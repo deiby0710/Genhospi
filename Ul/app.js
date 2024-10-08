@@ -13,7 +13,7 @@ const connection = mysql.createConnection({
     user: 'root',
     password: '12345',
     database: 'datospacientemed'
-});
+}); // hola
 
 // Verificar la conexión a la base de datos
 connection.connect((err) => {
@@ -113,7 +113,47 @@ app.get('/api/obtener-cantidad-pendiente', (req, res) => {
     });
 });
 
-
+//---------------------------------------------------------------------------------------------------------------------------------------
+app.post('/actualizar-cantidad', (req, res) => {
+    const { cantidadentregada, numerofactura, medicamento } = req.body;
+    // Validación de los datos recibidos
+    if (!cantidadentregada || !numerofactura || !medicamento) {
+        return res.status(400).json({ message: 'Faltan datos requeridos' });
+    }
+    const fechaActual = new Date(); // Obtener la fecha actual
+    // Lógica para buscar en la base de datos según numerofactura y medicamento
+    const query = 'SELECT * FROM pendientes WHERE numerofactura = ? AND medicamento = ?';
+    const values = [numerofactura, medicamento];
+    req.db.query(query, values, (error, results) => {
+        if (error) {
+            console.error(error);
+            return res.status(500).json({ message: 'Error al consultar la base de datos' });
+        }
+        // Si no se encuentra el registro
+        if (results.length === 0) {
+            return res.status(404).json({ message: 'Registro no encontrado' });
+        }
+        const registro = results[0];
+        // Actualiza la cantidad entregada y la fecha en la tabla
+        for (let i = 1; i <= 10; i++) {
+            // Comprobar si la cantidad entregada está vacía
+            if (!registro[`cantidadentregada${i}`]) {
+                registro[`cantidadentregada${i}`] = cantidadentregada; // Establecer nueva cantidad
+                registro[`fechaentrega${i}`] = fechaActual; // Establecer la fecha actual
+                break;
+            }
+        }
+        // Guarda el registro actualizado en la base de datos
+        const updateQuery = 'UPDATE pendientes SET ? WHERE idpendientes = ?';
+        req.db.query(updateQuery, [registro, registro.idpendientes], (updateError) => {
+            if (updateError) {
+                console.error(updateError);
+                return res.status(500).json({ message: 'Error al actualizar la cantidad' });
+            }
+            res.json({ message: 'Cantidad y fecha actualizadas exitosamente' });
+        });
+    });
+});
 
 // Iniciar el servidor
 app.listen(3000, () => {

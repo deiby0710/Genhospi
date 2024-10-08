@@ -801,6 +801,7 @@ if (data.pendientes.length > 0) {
                                 <th>Cantidad Prescrita</th>
                                 <th>Cantidad Pendiente</th>
                                 <th>Cantidad Entregada</th>
+
                                 <th style="background-color:#f17e7e;">Cantidad Pendiente Final</th>
                             </tr>
                         </thead>
@@ -817,6 +818,7 @@ if (data.pendientes.length > 0) {
                     <td style="padding: 10px; border: 1px solid #E4B93E;">
                         <input type="text" style="width: 100%; padding: 5px;" id="cantidadEntregada-${index}" oninput="calcularPendienteFinal(${index},${p.idpendientes})" class="cantidad-entregada" data-numerofactura="${p.numerofactura}" data-medicamento="${p.medicamento}">
                     </td>
+                    <td class="oculto" style="display:none; padding: 10px; border: 1px solid #E4B93E;">
                     <td style="padding: 10px; border: 1px solid #E4B93E; text-align:center;"> <p class="m-0 pendientesFinal" id="cantidadPendienteFinal-${index}">${p.cantidadpendientefinal || '0'}</p> </td>
                 </tr>
             `
@@ -895,6 +897,39 @@ if (data.pendientes.length > 0) {
             .catch(error => {
                 console.error('Error:', error);
             });
+        
+        // ---------------------------------------------------------------------
+        rows.forEach(input => {
+            console.log('Entraa')
+        const cantidadentregada = input.value; // Captura el valor del input
+        const numerofactura = input.dataset.numerofactura; // Captura el data attribute
+        const medicamento = input.dataset.medicamento; // Captura el data attribute
+        // Verifica que el input no esté vacío
+        if (cantidadentregada) {
+            // Enviar la solicitud al servidor
+            fetch('/actualizar-cantidad', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify({ cantidadentregada, numerofactura, medicamento }),
+            })
+            .then(response => {
+                if (!response.ok) {
+                    throw new Error('Error al actualizar la cantidad');
+                }
+                return response.json();
+            })
+            .then(data => {
+                console.log('Respuesta del servidor:', data);
+                alert(data.message);
+            })
+            .catch(error => {
+                console.error('Error:', error);
+                alert('Error al actualizar la cantidad');
+            });
+        }
+    });
         });
     } else {
         console.error('No se encontró el botón btn_actualizar.');
