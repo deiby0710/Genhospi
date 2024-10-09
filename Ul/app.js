@@ -180,6 +180,7 @@ app.get('/generar-reporte', (req, res) => {
             { header: 'identificacion', key: 'identificacion', width: 15 },
             { header: 'tipoidentificacion', key: 'tipoidentificacion', width: 20 },
             { header: 'nombre', key: 'nombre', width: 30 },
+            { header: 'eps', key: 'eps', width: 30 },
             { header: 'celular', key: 'celular', width: 15 },
             { header: 'celular2', key: 'celular2', width: 15 },
             { header: 'direccion', key: 'direccion', width: 30 },
