@@ -42,7 +42,7 @@ app.get('/buscar', (req, res) => {
     const identificacion = req.query.identificacion;
 
     // Primero, consultar en la tabla pacientes
-    const queryPacientes = 'SELECT identificacion, tipoidentificacion, nombre, telefono FROM pacientes WHERE identificacion = ?';
+    const queryPacientes = 'SELECT identificacion, tipoidentificacion, nombre, telefono, eps FROM pacientes WHERE identificacion = ?';
     req.db.query(queryPacientes, [identificacion], (err, pacientesResult) => {
         if (err) {
             return res.status(500).json({ message: 'Error en la consulta de pacientes' });

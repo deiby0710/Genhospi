@@ -602,6 +602,7 @@ document.getElementById('btn_cantidad_pendiente').addEventListener('click', func
         // Crear el objeto de datos
         const numeroformula = document.getElementById('numeroFormula').value;
         const celular = document.getElementById('celular1').value;
+        const eps = document.getElementById('eps').value;
         const celular2 = document.getElementById('celular2').value;
         const direccion = document.getElementById('direccion').value;
         const ambito = document.getElementById('ambito').value;
@@ -643,9 +644,10 @@ document.getElementById('btn_cantidad_pendiente').addEventListener('click', func
             diagnostico,
             plansos,
             fechaformula,
-            laboratorio
+            laboratorio,
+            eps
         };
-        console.log('Datos a enviar:', data);
+        // console.log('Datos a enviar:', data);
         
 
 
@@ -770,7 +772,7 @@ document.getElementById('agregar-paciente-btn').addEventListener('click', functi
                 pendientesDiv.style.display = 'none'; // Oculta los resultados de pendientes
                 return;
             }
-
+            console.log(data.paciente)
             // Mostrar los datos del paciente
             resultDiv.innerHTML = `
     <div class="container mt-3">
@@ -780,6 +782,7 @@ document.getElementById('agregar-paciente-btn').addEventListener('click', functi
             <div class="col-md-4">
                 <p><strong>Tipo de Identificación:</strong> ${data.paciente.tipoidentificacion}</p>
                 <p><strong>Numero Identificación:</strong> ${data.paciente.identificacion}</p>
+                <p><strong>Numero EPS:</strong> ${data.paciente.eps || ''}</p>
             </div>
             <div class="col-md-4">
                 <p><strong>Nombre:</strong> ${data.paciente.nombre}</p>
