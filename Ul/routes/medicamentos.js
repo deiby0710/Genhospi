@@ -9,7 +9,7 @@ router.get('/paciente', (req, res) => {
 
     // Consulta SQL para buscar el paciente
     const query = `
-        SELECT tipoidentificacion, nombre,telefono 
+        SELECT tipoidentificacion, nombre,telefono, eps
         FROM pacientes 
         WHERE identificacion = ?;
     `;
@@ -25,7 +25,8 @@ router.get('/paciente', (req, res) => {
             res.json({
                 tipoIdentificacion: paciente.tipoidentificacion,
                 primerNombre: paciente.nombre,
-                telefono: paciente.telefono
+                telefono: paciente.telefono,
+                eps: paciente.eps
             });
         } else {
             res.status(404).json({ error: 'Paciente no encontrado' });
@@ -176,11 +177,11 @@ router.get('/pendientes/ultimoNumeroFactura', (req, res) => {
 
 // Ruta para manejar la inserción de datos pacientes
 router.post('/pacientes', (req, res) => {
-    const { identificacion, tipoidentificacion, nombre, telefono} = req.body;
+    const { identificacion, tipoidentificacion, nombre, telefono, eps} = req.body;
 
     // Verificar campos obligatorios
-    if (!tipoidentificacion || !identificacion || !nombre || !telefono) {
-        return res.status(400).json({ message: 'Los campos identificacion, nombre, tipo de identificacion y telefono son requeridos' });
+    if (!tipoidentificacion || !identificacion || !nombre || !telefono || !eps) {
+        return res.status(400).json({ message: 'Los campos identificacion, nombre, tipo de identificacion, telefono y eps son requeridos' });
     }
 
     // Crear un objeto con los datos, omitiendo los campos no proporcionados
@@ -188,11 +189,12 @@ router.post('/pacientes', (req, res) => {
         identificacion,
         tipoidentificacion: tipoidentificacion || null,
         nombre,
-        telefono
+        telefono,
+        eps
     };
     // Código para insertar en la base de datos
-    const sql = 'INSERT INTO pacientes (identificacion, tipoidentificacion, nombre, telefono) VALUES (?, ?, ?, ?)'; 
-    const values = [data.identificacion, data.tipoidentificacion, data.nombre, data.telefono]; 
+    const sql = 'INSERT INTO pacientes (identificacion, tipoidentificacion, nombre, telefono, eps) VALUES (?, ?, ?, ?, ?)'; 
+    const values = [data.identificacion, data.tipoidentificacion, data.nombre, data.telefono, data.eps]; 
 
     req.db.query(sql, values, (error, results) => {
         if (error) {

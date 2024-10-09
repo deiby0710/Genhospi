@@ -3,6 +3,8 @@ const path = require('path');
 const app = express();
 const mysql = require('mysql2');
 const medicamentosRouter = require('./routes/medicamentos');
+const ExcelJS = require('exceljs');
+const fs = require('fs');
 
 // Middleware para manejar JSON en las solicitudes
 app.use(express.json());
@@ -152,6 +154,104 @@ app.post('/actualizar-cantidad', (req, res) => {
             }
             res.json({ message: 'Cantidad y fecha actualizadas exitosamente' });
         });
+    });
+});
+
+
+// Ruta para generar y descargar el reporte en formato Excel
+app.get('/generar-reporte', (req, res) => {
+    // Consulta SQL para obtener todos los datos de la tabla pendientes
+    const query = 'SELECT * FROM pendientes';
+
+    connection.query(query, (error, results) => {
+        if (error) {
+            return res.status(500).json({ error: 'Error al obtener los datos de la base de datos' });
+        }
+
+        // Crear un nuevo libro de Excel
+        const workbook = new ExcelJS.Workbook();
+        const worksheet = workbook.addWorksheet('Reporte Pendientes');
+
+        // Agregar encabezados
+        worksheet.columns = [
+            { header: 'idpendientes', key: 'idpendientes', width: 15 },
+            { header: 'numerofactura', key: 'numerofactura', width: 15 },
+            { header: 'fecharegistro', key: 'fecharegistro', width: 20 },
+            { header: 'identificacion', key: 'identificacion', width: 15 },
+            { header: 'tipoidentificacion', key: 'tipoidentificacion', width: 20 },
+            { header: 'nombre', key: 'nombre', width: 30 },
+            { header: 'celular', key: 'celular', width: 15 },
+            { header: 'celular2', key: 'celular2', width: 15 },
+            { header: 'direccion', key: 'direccion', width: 30 },
+            { header: 'codigoproducto', key: 'codigoproducto', width: 20 },
+            { header: 'medicamento', key: 'medicamento', width: 30 },
+            { header: 'tipoproducto', key: 'tipoproducto', width: 20 },
+            { header: 'laboratorio', key: 'laboratorio', width: 20 },
+            { header: 'cobertura', key: 'cobertura', width: 15 },
+            { header: 'cantidadprescrita', key: 'cantidadprescrita', width: 20 },
+            { header: 'cantidadpendiente', key: 'cantidadpendiente', width: 20 },
+            { header: 'cantidadentregada', key: 'cantidadentregada', width: 20 },
+            { header: 'cantidadentregada1', key: 'cantidadentregada1', width: 20 },
+            { header: 'fechaentrega1', key: 'fechaentrega1', width: 20 },
+            { header: 'cantidadentregada2', key: 'cantidadentregada2', width: 20 },
+            { header: 'fechaentrega2', key: 'fechaentrega2', width: 20 },
+            { header: 'cantidadentregada3', key: 'cantidadentregada3', width: 20 },
+            { header: 'fechaentrega3', key: 'fechaentrega3', width: 20 },
+            { header: 'cantidadentregada4', key: 'cantidadentregada4', width: 20 },
+            { header: 'fechaentrega4', key: 'fechaentrega4', width: 20 },
+            { header: 'cantidadentregada5', key: 'cantidadentregada5', width: 20 },
+            { header: 'fechaentrega5', key: 'fechaentrega5', width: 20 },
+            { header: 'cantidadentregada6', key: 'cantidadentregada6', width: 20 },
+            { header: 'fechaentrega6', key: 'fechaentrega6', width: 20 },
+            { header: 'cantidadentregada7', key: 'cantidadentregada7', width: 20 },
+            { header: 'fechaentrega7', key: 'fechaentrega7', width: 20 },
+            { header: 'cantidadentregada8', key: 'cantidadentregada8', width: 20 },
+            { header: 'fechaentrega8', key: 'fechaentrega8', width: 20 },
+            { header: 'cantidadentregada9', key: 'cantidadentregada9', width: 20 },
+            { header: 'fechaentrega9', key: 'fechaentrega9', width: 20 },
+            { header: 'cantidadentregada10', key: 'cantidadentregada10', width: 20 },
+            { header: 'fechaentrega10', key: 'fechaentrega10', width: 20 },
+            { header: 'cantidadpendientefinal', key: 'cantidadpendientefinal', width: 25 },
+            { header: 'tipoentrega', key: 'tipoentrega', width: 15 },
+            { header: 'sedependiente', key: 'sedependiente', width: 15 },
+            { header: 'estadodispensacion', key: 'estadodispensacion', width: 20 },
+            { header: 'numeroformula', key: 'numeroformula', width: 20 },
+            { header: 'cum', key: 'cum', width: 20 },
+            { header: 'ambito', key: 'ambito', width: 15 },
+            { header: 'nitips', key: 'nitips', width: 15 },
+            { header: 'nombreips', key: 'nombreips', width: 30 },
+            { header: 'tipocontrato', key: 'tipocontrato', width: 20 },
+            { header: 'codigodiagnostico', key: 'codigodiagnostico', width: 20 },
+            { header: 'diagnostico', key: 'diagnostico', width: 30 },
+            { header: 'plansos', key: 'plansos', width: 20 },
+            { header: 'fechaformula', key: 'fechaformula', width: 20 },
+            { header: 'concentracion', key: 'concentracion', width: 20 },
+            { header: 'observacion', key: 'observacion', width: 30 }
+        ];
+
+        // Agregar los datos de la base de datos
+        results.forEach((row) => {
+            worksheet.addRow(row);
+        });
+
+        // Guardar el archivo Excel temporalmente en el servidor
+        const filePath = path.join(__dirname, 'reporte_pendientes.xlsx');
+        workbook.xlsx.writeFile(filePath)
+            .then(() => {
+                // Enviar el archivo Excel al cliente
+                res.download(filePath, 'reporte_pendientes.xlsx', (err) => {
+                    if (err) {
+                        console.error('Error al descargar el archivo:', err);
+                    }
+
+                    // Eliminar el archivo temporal después de enviarlo
+                    fs.unlinkSync(filePath);
+                });
+            })
+            .catch((error) => {
+                console.error('Error al generar el archivo Excel:', error);
+                res.status(500).json({ error: 'Error al generar el archivo Excel' });
+            });
     });
 });
 

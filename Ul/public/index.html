@@ -14,8 +14,8 @@
                 <div class="div_botones">
                     <button id="facturacion-btn" class="btn-success btn-custom-1">Facturacion pendiente</button>
                     <button id="agregar-paciente-btn-1" class="btn-success btn-custom-1">Agregar paciente</button>
-                    <!-- <button class="btn-success btn-custom-1">Modificar Doc</button> -->
                     <button id="consulta-btn"class="btn-success btn-custom-1">Consulta Pendientes</button>
+                    <button id="generar-reporte" class="btn-success btn-custom-1" onclick="generarReporte()">Generar Reporte</button>
                 </div>
                 <div class="div_botones">
 
@@ -33,7 +33,7 @@
                                 <th class="text-center">Tipo ID</th>
                                 <th class="text-center">Paciente</th>
                                 <th class="text-center">Celular</th>
-                                <th class="text-center">Nº Fórmula</th>
+                                <th class="text-center">EPS</th>
                             </tr>
                         </thead>
                         <tbody>
@@ -43,7 +43,7 @@
                                 <td><input type="text" class="form-control form-id" required></td>
                                 <td><input type="text" id="nombrePaciente" class="form-control form-paciente" required></td>
                                 <td><input type="text" id="celular1" class="form-control form-telefono" required></td>
-                                <td><input type="text" id="numeroFormula" maxlength="50" class="form-control"></td>
+                                <td><input type="text" id="eps" maxlength="50" class="form-control form-eps"></td>
                             </tr>
                         </tbody>
                     </table>
@@ -55,6 +55,7 @@
                     <table class="w-100">
                         <thead class="text-dark">
                             <tr>
+                                <th class="text-center">Nº Fórmula</th>
                                 <th class="text-center">Celular 2</th>
                                 <th class="text-center">Dirección</th>
                                 <th class="text-center">Ámbito de prestación de la actividad</th>
@@ -64,7 +65,8 @@
                         </thead>
                         <tbody>
                             <tr>
-                                <td><input type="text" id="celular2" class="form-control"></td>
+                                <td><input type="text" id="numeroFormula" maxlength="50" class="form-control"></td>
+                                <td><input type="text" id="celular2" maxlength="10" class="form-control"></td>
                                 <td><input type="text" id="direccion" class="form-control"></td>
                                 <td><input type="text" id="ambito" class="form-control" value="Ambulatorio"></td>
                                 <td><input type="number" id="NITIPS" class="form-control"></td>
@@ -263,6 +265,7 @@
                                 <th class="text-center">Tipo ID</th>
                                 <th class="text-center">Paciente</th>
                                 <th class="text-center">Celular</th>
+                                <th class="text-center">EPS</th>
                             </tr>
                         </thead>
                         <tbody>
@@ -286,6 +289,7 @@
                                 </td>
                                 <td><input type="text" id="AnombrePaciente" class="form-control form-paciente" required></td>
                                 <td><input type="text" id="Acelular1" class="form-control form-telefono" required></td>
+                                <td><input type="text" id="Aeps" class="form-control form-eps" required></td>
                             </tr>
                         </tbody>
                     </table>
@@ -336,6 +340,7 @@
         const tipoIdInput = document.querySelector('.form-id'); // Campo tipo identificación
         const pacienteInput = document.querySelector('.form-paciente'); // Campo primer nombre
         const celularInput = document.querySelector('.form-telefono'); // Campo celular
+        const eps = document.querySelector('.form-eps'); // Campo eps
 
         const diagnosticoInput = document.querySelector('input.diagnostico'); 
         const nombreDiagnosticoInput = document.querySelector('.form-nombre-diagnostico');  
@@ -354,12 +359,14 @@
                         tipoIdInput.value = data.tipoIdentificacion || '';
                         pacienteInput.value = data.primerNombre || '';
                         celularInput.value = data.telefono || '';
+                        eps.value = data.eps || '';
                     })
                     .catch(error => {
                         console.error('Error:', error);
                         tipoIdInput.value = '';
                         pacienteInput.value = '';
                         celularInput.value = '';
+                        eps.value = data.eps || '';
                     });
             }
         });
@@ -464,8 +471,8 @@ document.getElementById('btn_cantidad_pendiente').addEventListener('click', func
     const observacion = document.getElementById('observacion').value;
 
 
-    if (!codigo || !producto || !laboratorio || !cantidadPendiente) {
-        alert('Por favor completa los campos obligatorios: codigo, producto, laboratorio, valor unitario y cantidad pendiente');
+    if (!codigo || !producto || !laboratorio || !cantidadPendiente || !fechaRegistro  || !identificacion || !tipoProducto || !cantidadPrescrita || !tipoEntrega || !sedePendiente || !estadoDispensacion) {
+        alert('Por favor completa los campos obligatorios');
         return;
     }
 
@@ -690,7 +697,8 @@ document.getElementById('agregar-paciente-btn').addEventListener('click', functi
         const identificacion = document.getElementById('Aidentificacion').value;
         const nombre = document.getElementById('AnombrePaciente').value;
         const tipoIdentificacion = document.getElementById('AtipoIdentificacion').value;
-        const telefono= document.getElementById('Acelular1').value;
+        const telefono = document.getElementById('Acelular1').value;
+        const eps = document.getElementById('Aeps').value;
 
         // Crear el objeto de datos
         const data = {
@@ -698,6 +706,7 @@ document.getElementById('agregar-paciente-btn').addEventListener('click', functi
             tipoidentificacion: tipoIdentificacion,
             nombre,
             telefono,
+            eps
         };
         
         // Enviar los datos al servidor
@@ -1003,4 +1012,33 @@ function calcularPendienteFinal(index, id) {
             console.error('Error al obtener la cantidad pendiente final actualizada:', error);
         });
 }
+
+
+function generarReporte() {
+            // Realiza la solicitud al servidor para generar el reporte
+            fetch('/generar-reporte')
+                .then(response => {
+                    if (response.ok) {
+                        // Si la respuesta es correcta, convierte la respuesta en un blob
+                        return response.blob();
+                    } else {
+                        throw new Error('Error al generar el reporte');
+                    }
+                })
+                .then(blob => {
+                    // Crear una URL para el archivo descargado
+                    const url = window.URL.createObjectURL(blob);
+                    const a = document.createElement('a');
+                    a.href = url;
+                    a.download = 'reporte_pendientes.xlsx'; // Nombre del archivo
+                    document.body.appendChild(a);
+                    a.click(); // Simula el clic para iniciar la descarga
+                    a.remove(); // Elimina el elemento después de la descarga
+                })
+                .catch(error => {
+                    console.error('Error:', error);
+                    alert('Ocurrió un error al generar el reporte');
+                });
+        }
+
 </script>
