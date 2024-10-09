@@ -819,7 +819,7 @@ if (data.pendientes.length > 0) {
                         <input type="text" style="width: 100%; padding: 5px;" id="cantidadEntregada-${index}" oninput="calcularPendienteFinal(${index},${p.idpendientes})" class="cantidad-entregada" data-numerofactura="${p.numerofactura}" data-medicamento="${p.medicamento}">
                     </td>
                     <td class="oculto" style="display:none; padding: 10px; border: 1px solid #E4B93E;">
-                    <td style="padding: 10px; border: 1px solid #E4B93E; text-align:center;"> <p class="m-0 pendientesFinal" id="cantidadPendienteFinal-${index}">${p.cantidadpendientefinal || '0'}</p> </td>
+                    <td style="padding: 10px; border: 1px solid #E4B93E; text-align:center;" class="tdPendientesFinal" id="cantidadPendienteFinalTD-${index}"> <p class="m-0 pendientesFinal" id="cantidadPendienteFinal-${index}">${p.cantidadpendientefinal || '0'}</p> </td>
                 </tr>
             `
         ).join('')}
@@ -835,6 +835,17 @@ if (data.pendientes.length > 0) {
             } else {
                 pendientesDiv.innerHTML = '<h3>No hay pendientes para esta identificación.</h3>';
             }
+
+            const cpf_styles = document.querySelectorAll('.tdPendientesFinal');
+            const inputs_des = document.querySelectorAll('.cantidad-entregada');
+            cpf_styles.forEach((celda,index) => {
+                // Verifica si el valor de la celda es 0
+                if (parseInt(celda.textContent) === 0) {
+                    // Cambia el fondo de la celda a verde
+                    celda.style.backgroundColor = '#7edd8e';
+                    inputs_des[index].disabled = true;
+                }
+            });
 
             // Mostrar el resultado
             resultDiv.style.display = 'block'; // Asegúrate de que el resultado del paciente se muestre
@@ -857,7 +868,6 @@ if (data.pendientes.length > 0) {
                 const medicamento = row.getAttribute('data-medicamento');
                 const cantidadentregada = row.value;
                 const cantidadpendientefinal = pendientesFinales[index].textContent;
-                console.log(cantidadpendientefinal)
 
                 updates.push({
                     numerofactura: numerofactura,
@@ -865,6 +875,12 @@ if (data.pendientes.length > 0) {
                     cantidadentregada: cantidadentregada,
                     cantidadpendientefinal: cantidadpendientefinal
                 });
+                // Si la CPF==0 entonces hace que el input se inhabilite
+                if (cantidadpendientefinal == 0){
+                    console.log('Entraa')
+                    const input = document.getElementById(`cantidadEntregada-${index}`)
+                    input.disabled = true;
+                }
             });
 
             // Enviar datos al backend
@@ -880,7 +896,6 @@ if (data.pendientes.length > 0) {
                 if (data1.success) {
         // Recorre cada fila para actualizar la columna de "Cantidad Pendiente Final"
                 updates.forEach((update, index) => {
-                    // const pendientesElemet = document.querySelectorAll('.pendientesFinal');
                     const pendientesFinales = document.getElementById(`cantidadPendienteFinal-${index}`)
                     const cantidadpendientefinalValor = pendientesFinales.textContent;
                     const cantidadentregada = document.getElementById(`cantidadEntregada-${index}`)
@@ -900,7 +915,6 @@ if (data.pendientes.length > 0) {
         
         // ---------------------------------------------------------------------
         rows.forEach(input => {
-            console.log('Entraa')
         const cantidadentregada = input.value; // Captura el valor del input
         const numerofactura = input.dataset.numerofactura; // Captura el data attribute
         const medicamento = input.dataset.medicamento; // Captura el data attribute
@@ -940,6 +954,7 @@ if (data.pendientes.length > 0) {
 function calcularPendienteFinal(index, id) {
     const cantidadEntregadaElement = document.getElementById(`cantidadEntregada-${index}`);
     const cantidadPendienteFinalElement = document.getElementById(`cantidadPendienteFinal-${index}`);
+    const cantidadPendienteFinalElementTD = document.getElementById(`cantidadPendienteFinalTD-${index}`);
 
     if (!cantidadEntregadaElement || !cantidadPendienteFinalElement) {
         console.error(`No se encontró uno de los elementos con id 'cantidadEntregada-${index}' o 'cantidadPendienteFinal-${index}'`);
@@ -972,14 +987,9 @@ function calcularPendienteFinal(index, id) {
             const pendienteFinal = cantidadPendiente - cantidadEntregada;
             cantidadPendienteFinalElement.textContent = pendienteFinal >= 0 ? pendienteFinal : 0;
             if (cantidadPendienteFinalElement.textContent === '0') {
-                cantidadPendienteFinalElement.style.backgroundColor = '#7edd8e';  
-                cantidadPendienteFinalElement.style.fontWeight = 'bold'; 
-                cantidadPendienteFinalElement.style.padding = '8px'; 
+                cantidadPendienteFinalElementTD.style.backgroundColor = '#7edd8e';  
             } else {
-                cantidadPendienteFinalElement.style.backgroundColor = ''; 
-                cantidadPendienteFinalElement.style.color = ''; 
-                cantidadPendienteFinalElement.style.fontWeight = ''; 
-                cantidadPendienteFinalElement.style.padding = '';
+                cantidadPendienteFinalElementTD.style.backgroundColor = 'white'; 
             }
 
         })
