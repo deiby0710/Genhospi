@@ -125,3 +125,27 @@ body {
     margin-left: 485px; /* Ajusta el margen izquierdo para moverlo más a la derecha */
 }
 
+/* Bienvenido */
+/* Estilos para el mensaje de bienvenida */
+#username {
+    font-family: 'Arial', sans-serif; /* Mantén la consistencia de la fuente */
+    font-size: 1.2em; /* Tamaño de letra adecuado */
+    font-weight: bold; /* Hacer el texto un poco más llamativo */
+    color: #333333; /* Color oscuro para buena legibilidad */
+    background-color: #fefbf3; /* Fondo amarillo similar al estilo de la página */
+    padding: 20px 20px; /* Espaciado alrededor del texto */
+    border-radius: 8px; /* Bordes redondeados */
+    text-align: center; /* Centrar el texto */
+    margin-bottom: 20px; /* Espacio debajo del mensaje */
+    box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1); /* Sombra suave para darle relieve */
+}
+
+/* Estilos adicionales si deseas agregar una animación sutil */
+#username {
+    animation: fadeIn 1.5s ease-in-out;
+}
+
+@keyframes fadeIn {
+    0% { opacity: 0; }
+    100% { opacity: 1; }
+}

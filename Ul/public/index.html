@@ -9,6 +9,8 @@
     <link rel="stylesheet" href="index.css">
 </head>
 <body>
+    <div class="user" id="username">
+    </div>
     <div class="container mt-3">
         <div class="botones">
                 <div class="div_botones">
@@ -124,18 +126,18 @@
                     <table class="mt-2 w-100">
                         <thead class="text-dark">
                             <tr>
-                                <th class="text-center">Código producto</th>
                                 <th class="text-center">Producto</th>
+                                <th class="text-center">Código producto</th>
                                 <th class="text-center">Laboratorio</th>
                             </tr>
                         </thead>
                         <tbody>
                             <tr>
-                                <td><input type="text" id="codigo_producto"class="form-control"></td>
                                 <td>
                                     <input class="form-control form-prod" type="text" id="medicamento" placeholder="Escribe un medicamento..." list="medicamentos-list" autocomplete="off">
                                     <datalist id="medicamentos-list"></datalist>
                                 </td>
+                                <td><input type="text" id="codigo_producto"class="form-control"></td>
                                 <td><input type="text" id="laboratorio" class="form-control"></td>
                             </tr>
                         </tbody>
@@ -183,12 +185,7 @@
                         <tbody>
                             <tr>
                                 <td>
-                                    <select id="sede_pendiente" name="sede_pendiente" class="form-control form-inline-input" required>
-                                        <option value="tequendama">TEQUENDAMA</option>
-                                        <option value="versalles">VERSALLES</option>
-                                        <option value="morichal">MORICHAL</option>
-                                        <option value="prado">PRADO</option>
-                                    </select>
+                                    <input id="sede_pendiente" name="sede_pendiente" type="text" class="form-control form-inline-input" readonly>
                                 </td>
                                 <td>
                                     <select id="estado-dis" name="estado-dis" class="form-control form-inline-input" required>
@@ -322,6 +319,16 @@
 </html>
 
 <script>
+    const urlParams = new URLSearchParams(window.location.search);
+    const username = urlParams.get('username') || 'Invitado';
+    const sede = urlParams.get('sede') || 'Desconocida';
+
+    // Mostrar el mensaje de bienvenida
+    document.getElementById('username').setAttribute('registradopor',username);
+    document.getElementById('username').innerText = `¡Bienvenido ${username} de la sede ${sede}!`;
+    document.getElementById('sede_pendiente').value = `${sede}`;
+
+    // -----------------------------------------------------------------------
     // Obtener el elemento input de fecha
     const inputFecha = document.getElementById('fecha_solicitud');
     // Crear un objeto de fecha actual
@@ -625,6 +632,8 @@ document.getElementById('btn_cantidad_pendiente').addEventListener('click', func
         const diagnostico = document.getElementById('nombreDiagnostico').value;
         const plansos = document.getElementById('planSOS').value; // Captura el valor seleccionado
         const fechaformula = document.getElementById('fechaFormula').value;
+        const registradopor = document.getElementById('username').getAttribute('registradopor');
+        console.log(registradopor)
 
         const data = {
             fecharegistro: fechaRegistro,
@@ -657,9 +666,9 @@ document.getElementById('btn_cantidad_pendiente').addEventListener('click', func
             plansos,
             fechaformula,
             laboratorio,
-            eps
+            eps,
+            registradopor
         };
-        // console.log('Datos a enviar:', data);
         
 
 

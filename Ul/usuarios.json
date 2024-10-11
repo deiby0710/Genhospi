@@ -1,0 +1,23 @@
+[
+    {
+        "username": "sebas",
+        "password": "123",
+        "sede": "TEQUENDAMA"
+    },
+    {
+        "username": "Alejandro",
+        "password": "1234",
+        "sede": "VERSALLES"
+    },
+    {
+        "username": "Jaime",
+        "password": "12345",
+        "sede": "MORICHAL"
+    },
+    {
+        "username": "Jonh",
+        "password": "123456",
+        "sede": "PRADO"
+    }
+]
+

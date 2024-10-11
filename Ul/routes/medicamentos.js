@@ -86,7 +86,7 @@ router.post('/pendientes', (req, res) => {
         fecharegistro, identificacion, tipoidentificacion, nombre, medicamento, cantidadpendiente, numerofactura,
         tipoproducto, codigoproducto, cobertura, cantidadprescrita, tipoentrega, sedependiente, estadodispensacion,
         cum, concentracion, observacion, numeroformula, celular, celular2, direccion, ambito, nitips, nombreips,
-        tipocontrato, codigodiagnostico, diagnostico, plansos, fechaformula, laboratorio,eps
+        tipocontrato, codigodiagnostico, diagnostico, plansos, fechaformula, laboratorio,eps, registradopor
     } = req.body;
 
     // Verificar campos obligatorios
@@ -129,7 +129,8 @@ router.post('/pendientes', (req, res) => {
         plansos: plansos || null,
         fechaformula: fechaformula || null,
         laboratorio: laboratorio || null,
-        eps: eps || null
+        eps: eps || null,
+        registradopor: registradopor || null
     };
 
     // Código para insertar en la base de datos
@@ -138,15 +139,15 @@ router.post('/pendientes', (req, res) => {
         fecharegistro, identificacion, tipoidentificacion, nombre, medicamento, cantidadpendiente, cantidadentregada, cantidadpendientefinal, numerofactura,
         tipoproducto, codigoproducto, cobertura, cantidadprescrita, tipoentrega, sedependiente, estadodispensacion,
         cum, concentracion, observacion, numeroformula, celular, celular2, direccion, ambito, nitips, nombreips,
-        tipocontrato, codigodiagnostico, diagnostico, plansos, fechaformula, laboratorio, eps
-    ) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ? ,?, ?)
+        tipocontrato, codigodiagnostico, diagnostico, plansos, fechaformula, laboratorio, eps, registradopor
+    ) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ? ,?, ?, ?)
 `;
 
 const values = [
     data.fecharegistro, data.identificacion, data.tipoidentificacion, data.nombre, data.medicamento, data.cantidadpendiente,0, data.cantidadpendiente, data.numerofactura,
     data.tipoproducto, data.codigoproducto, data.cobertura, data.cantidadprescrita, data.tipoentrega, data.sedependiente, data.estadodispensacion,
     data.cum, data.concentracion, data.observacion, data.numeroformula, data.celular, data.celular2, data.direccion, data.ambito, data.nitips, data.nombreips,
-    data.tipocontrato, data.codigodiagnostico, data.diagnostico, data.plansos, data.fechaformula, data.laboratorio, data.eps
+    data.tipocontrato, data.codigodiagnostico, data.diagnostico, data.plansos, data.fechaformula, data.laboratorio, data.eps, data.registradopor
 ];
 
 

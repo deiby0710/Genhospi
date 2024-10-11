@@ -6,10 +6,19 @@ const medicamentosRouter = require('./routes/medicamentos');
 const ExcelJS = require('exceljs');
 const fs = require('fs');
 const session = require('express-session');
-
+const bodyParser = require('body-parser');
 
 // Middleware para parsear datos del formulario
-app.use(express.urlencoded({ extended: true }));
+app.use(bodyParser.urlencoded({ extended: true }));
+app.use(bodyParser.json()); // Agregado para parsear JSON si es necesario
+
+// Configuración de la sesión
+app.use(session({
+    secret: 'mi_secreto', // Cambia esto por una cadena secreta segura
+    resave: false,
+    saveUninitialized: true,
+    cookie: { secure: false } // Cambia a true si usas HTTPS
+}));
 
 // Servir archivos estáticos desde la carpeta 'public'
 app.use(express.static(path.join(__dirname, 'public')));
@@ -19,16 +28,47 @@ app.post('/login', (req, res) => {
     const username = req.body.username;
     const password = req.body.password;
 
-    // Usuario y contraseña fijos (puedes cambiarlos)
-    const fixedUsername = 'usuario';
-    const fixedPassword = 'contraseña';
+    // // Usuario y contraseña fijos (puedes cambiarlos)
+    // const fixedUsername = 'sebas';
+    // const fixedPassword = '123';
 
-    if (username === fixedUsername && password === fixedPassword) {
-        res.redirect('index.html'); // Redirige a index.html si las credenciales son correctas
-    } else {
-        // Redirigir de vuelta a login.html con un mensaje de error en la URL
-        res.redirect('/login.html?error=true');
-    }
+    fs.readFile('usuarios.json', 'utf8', (err, data) => {
+        if (err) {
+            console.error('Error leyendo el archivo JSON:', err);
+            return res.redirect('/login.html?error=true');
+        }
+
+        // Parsear el JSON y buscar el usuario
+        const usuarios = JSON.parse(data);
+        const usuarioEncontrado = usuarios.find(user => user.username === username && user.password === password);
+
+        if (usuarioEncontrado) {
+            // Almacena el nombre de usuario y la sede en la sesión
+            req.session.username = usuarioEncontrado.username; // Almacenar el nombre de usuario en la sesión
+            req.session.sede = usuarioEncontrado.sede; // Almacenar la sede en la sesión
+            // Redirigir a index.html con el nombre de usuario y sede como parámetros de consulta
+            res.redirect(`/index.html?username=${encodeURIComponent(usuarioEncontrado.username)}&sede=${encodeURIComponent(usuarioEncontrado.sede)}`); 
+        } else {
+            // Redirigir de vuelta a login.html con un mensaje de error en la URL
+            res.redirect('/login.html?error=true');
+        }
+    });
+});
+
+
+// Ruta para renderizar index.html
+app.get('/index.html', (req, res) => {
+    // Leer el nombre de usuario de la sesión
+    const username = req.session.username || 'Invitado'; // Asegurarse de que la sesión existe
+    const sede = req.session.sede || 'Desconocida'; // Obtener sede de la sesión
+
+    // Enviar el archivo index.html y pasar el nombre de usuario y sede a través de la URL
+    res.sendFile(path.join(__dirname, 'public', 'index.html'), {
+        headers: {
+            'username': username, // Esto no se usará en HTML pero puede ser útil para debugging
+            'sede': sede
+        }
+    });
 });
 
 // Middleware para manejar JSON en las solicitudes
@@ -252,7 +292,8 @@ app.get('/generar-reporte', (req, res) => {
             { header: 'plansos', key: 'plansos', width: 20 },
             { header: 'fechaformula', key: 'fechaformula', width: 20 },
             { header: 'concentracion', key: 'concentracion', width: 20 },
-            { header: 'observacion', key: 'observacion', width: 30 }
+            { header: 'observacion', key: 'observacion', width: 30 },
+            { header: 'registradopor', key: 'registradopor', width: 30 }
         ];
 
         // Agregar los datos de la base de datos
@@ -280,6 +321,8 @@ app.get('/generar-reporte', (req, res) => {
             });
     });
 });
+
+
 
 // Iniciar el servidor
 app.listen(3000, () => {
