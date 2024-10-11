@@ -46,7 +46,7 @@ body {
 }
 
 .btn-custom {
-    width: 50%;
+    width: 14%;
     padding: 5px;
     background-color: rgb(54, 54, 54);
     color: white;
@@ -57,7 +57,8 @@ body {
     transition: background-color 0.3s ease;
 }
 .btn-custom:hover {
-    background-color: #3f3f3f;
+    background-color: #131212;
+    color: white;
 }
 .btn-custom-1{
     width: 150px;
@@ -68,6 +69,7 @@ body {
     border: none;
     border-radius: 4px;
     font-size: 13px;
+    margin: 0 1px;
     cursor: pointer;
     transition: background-color 0.3s ease;
 }
@@ -118,3 +120,8 @@ body {
     display: none;
     /* background-color: #3f3f3f; */
 }
+
+.last-btn {
+    margin-left: 485px; /* Ajusta el margen izquierdo para moverlo más a la derecha */
+}
+

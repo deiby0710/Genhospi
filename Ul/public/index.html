@@ -12,16 +12,15 @@
     <div class="container mt-3">
         <div class="botones">
                 <div class="div_botones">
-                    <button id="facturacion-btn" class="btn-success btn-custom-1">Facturacion pendiente</button>
-                    <button id="agregar-paciente-btn-1" class="btn-success btn-custom-1">Agregar paciente</button>
+                    <button id="facturacion-btn" class="btn-success btn-custom-1">Facturacion Pendiente</button>
+                    <button id="agregar-paciente-btn-1" class="btn-success btn-custom-1">Agregar Paciente</button>
                     <button id="consulta-btn"class="btn-success btn-custom-1">Consulta Pendientes</button>
-                    <button id="generar-reporte" class="btn-success btn-custom-1" onclick="generarReporte()">Generar Reporte</button>
+                    <button id="generar-reporte" class="btn-success btn-custom-1 last-btn" onclick="generarReporte()">Generar Reporte</button>
                 </div>
                 <div class="div_botones">
-
                 </div>
-        </div>
-        <h1 class="text-center text-dark mb-6" id="texto_principal">Datos afiliado</h1>
+        </div><br>
+        <h1 class="text-center text-dark mb-6" id="texto_principal">Datos Afiliado</h1>
         <div class="formulario_principal" id="id_formulario_principal">
             <div class="row">
                 <div class="col-md-12">
@@ -39,7 +38,7 @@
                         <tbody>
                             <tr>
                                 <td><input type="date" id="fecha_solicitud" class="form-control"></td>
-                                <td><input type="text" class="form-control identificacion" required></td>
+                                <td><input type="number" class="form-control identificacion" required></td>
                                 <td><input type="text" class="form-control form-id" required></td>
                                 <td><input type="text" id="nombrePaciente" class="form-control form-paciente" required></td>
                                 <td><input type="text" id="celular1" class="form-control form-telefono" required></td>
@@ -65,8 +64,8 @@
                         </thead>
                         <tbody>
                             <tr>
-                                <td><input type="text" id="numeroFormula" maxlength="50" class="form-control"></td>
-                                <td><input type="text" id="celular2" maxlength="10" class="form-control"></td>
+                                <td><input type="number" id="numeroFormula" maxlength="50" class="form-control"></td>
+                                <td><input type="number" id="celular2" maxlength="10" class="form-control"></td>
                                 <td><input type="text" id="direccion" class="form-control"></td>
                                 <td><input type="text" id="ambito" class="form-control" value="Ambulatorio"></td>
                                 <td><input type="number" id="NITIPS" class="form-control"></td>
@@ -134,7 +133,7 @@
                             <tr>
                                 <td><input type="text" id="codigo_producto"class="form-control"></td>
                                 <td>
-                                    <input class="form-control form-prod" type="text" id="medicamento" placeholder="Escribe un medicamento..." list="medicamentos-list">
+                                    <input class="form-control form-prod" type="text" id="medicamento" placeholder="Escribe un medicamento..." list="medicamentos-list" autocomplete="off">
                                     <datalist id="medicamentos-list"></datalist>
                                 </td>
                                 <td><input type="text" id="laboratorio" class="form-control"></td>
@@ -158,7 +157,7 @@
                             <tr>
                                 <td><input type="text" id="tipo_producto" class="form-control form-tipo"></td>
                                 <td><input type="text" id="cobertura" class="form-control form-inline-input"></td>
-                                <td><input type="text" id="cantidad_prescrita" maxlength="4" class="form-control"></td>
+                                <td><input type="number" id="cantidad_prescrita" maxlength="4" class="form-control"></td>
                                 <td>
                                     <select name="tipoEntrega" id="tipoEntrega" class="form-control">
                                         <option value="Presencial">Presencial</option>
@@ -215,8 +214,8 @@
                             <tr>
                                 <th><input type="text" id="observacion" class="form-control"></th>
                                 <th class="d-flex">
-                                    <input type="text" id="cantidad_pendiente" class="form-control w-25 ml-1" required>
-                                    <button type="submit" id="btn_cantidad_pendiente" class="btn btn-custom btn-block ml-2 w-100">Cantidad pendiente</button>
+                                    <input type="number" id="cantidad_pendiente" class="form-control w-25 ml-1" required>
+                                    <button type="submit" id="btn_cantidad_pendiente" class="btn btn-custom btn-block ml-2 w-100">Cantidad Pendiente</button>
                                 </th>
                             </tr>
                         </thead>
@@ -270,7 +269,7 @@
                         </thead>
                         <tbody>
                             <tr>
-                                <td><input type="text" class="form-control" id="Aidentificacion" required></td>
+                                <td><input type="number" class="form-control" id="Aidentificacion" required></td>
                                 <td>
                                     <select id="AtipoIdentificacion" name="tipoIdentificacion" class="form-control form-inline-input" required>
                                         <option value="CC">CC</option>
@@ -287,8 +286,8 @@
                                         <option value="TI">TI</option>
                                     </select>
                                 </td>
-                                <td><input type="text" id="AnombrePaciente" class="form-control form-paciente" required></td>
-                                <td><input type="text" id="Acelular1" class="form-control form-telefono" required></td>
+                                <td><input type="text" id="AnombrePaciente" class="form-control form-paciente" required oninput="this.value = this.value.replace(/[^a-zA-ZáéíóúÁÉÍÓÚñÑ\s]/g, '');"></td>
+                                    <td><input type="number" id="Acelular1" class="form-control form-telefono" required></td>
                                 <td><input type="text" id="Aeps" class="form-control form-eps" required></td>
                             </tr>
                         </tbody>
@@ -296,7 +295,7 @@
                 </div>
             </div>
             <div class="text-center mt-3">
-                <button id="agregar-paciente-btn" class="btn-success btn-custom-1">Agregar paciente</button>
+                <button id="agregar-paciente-btn" class="btn btn-custom">Agregar Paciente</button>
             </div>
         </div>
     </div>
@@ -475,6 +474,19 @@ document.getElementById('btn_cantidad_pendiente').addEventListener('click', func
         alert('Por favor completa los campos obligatorios');
         return;
     }
+
+    // Reiniciar los inputs
+    document.getElementById("codigo_producto").value = "";
+    document.getElementById("medicamento").value = "";
+    document.getElementById("laboratorio").value = "";
+    document.getElementById("tipo_producto").value = "";
+    document.getElementById("cobertura").value = "";
+    document.getElementById("cantidad_prescrita").value = "";
+    document.getElementById("cum").value = "";
+    document.getElementById("concentracion").value = "";
+    document.getElementById("observacion").value = "";
+    document.getElementById("cantidad_pendiente").value = "";
+
 
     // Crear una nueva fila (tr)
     const nuevaFila = document.createElement('tr');
@@ -782,7 +794,7 @@ document.getElementById('agregar-paciente-btn').addEventListener('click', functi
             <div class="col-md-4">
                 <p><strong>Tipo de Identificación:</strong> ${data.paciente.tipoidentificacion}</p>
                 <p><strong>Numero Identificación:</strong> ${data.paciente.identificacion}</p>
-                <p><strong>Numero EPS:</strong> ${data.paciente.eps || ''}</p>
+                <p><strong>EPS:</strong> ${data.paciente.eps || ''}</p>
             </div>
             <div class="col-md-4">
                 <p><strong>Nombre:</strong> ${data.paciente.nombre}</p>
@@ -799,7 +811,7 @@ document.getElementById('agregar-paciente-btn').addEventListener('click', functi
 // Mostrar los datos de la tabla pendientes
 if (data.pendientes.length > 0) {
     pendientesDiv.innerHTML = `
-    <h2 style="color: #333; font-weight: bold; text-align: center;" class="mt-3">Datos de Pendientes</h2>
+    <h2 style="color: #333; font-weight: bold; text-align: center;" class="mt-3">Medicamentos Pendientes</h2>
     <div class="container mt-3">
     <div class="formulario_principal_consulta">
     <div class="row mt-2">
@@ -816,7 +828,7 @@ if (data.pendientes.length > 0) {
                                 <th>Cantidad Pendiente</th>
                                 <th>Cantidad Entregada</th>
 
-                                <th style="background-color:#f17e7e;">Cantidad Pendiente Final</th>
+                                <th style="background-color:#dc3545;color: white;">Cantidad Pendiente Final</th>
                             </tr>
                         </thead>
                         <tbody id="tabla-productos">
@@ -860,7 +872,7 @@ if (data.pendientes.length > 0) {
                 // Verifica si el valor de la celda es 0
                 if (parseInt(celda.textContent) === 0) {
                     // Cambia el fondo de la celda a verde
-                    celda.style.backgroundColor = '#7edd8e';
+                    celda.style.backgroundColor = '#5edd9e';
                     inputs_des[index].disabled = true;
                 }
             });
