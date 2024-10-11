@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset='utf-8'>
+    <meta http-equiv='X-UA-Compatible' content='IE=edge'>
+    <title>Inicio sesión</title>
+    <meta name='viewport' content='width=device-width, initial-scale=1'>
+    <link rel="stylesheet" href="login.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+</head>
+<body>
+    <div class="login-form">
+        <img src="/images/logo.jpg" alt="Vini" class="logo">
+        <form id="loginForm" method="POST" action="/login"> <!-- Acción POST para login -->
+            <div class="form-group">
+                <input type="text" class="form-control campo-text" placeholder="Username" name="username" id="UserName" required>
+                <i class="fa fa-user"></i>
+            </div>
+            <div class="form-group log-status">
+                <input type="password" class="form-control campo-text" placeholder="Password" name="password" id="contra" required>
+                <i class="fa fa-lock"></i>
+            </div>
+            <!-- Mostrar mensaje de error si hay fallo -->
+            <div id="response">
+                <!-- Este mensaje se mostrará en caso de error -->
+                <p id="error-message" style="color: red; display: none;">Usuario o contraseña incorrectos.</p>
+            </div>
+            <div class="btn_box">
+                <button type="submit" class="log-btn">Iniciar sesión</button>
+            </div>
+        </form>
+    </div>
+
+    <script>
+        // Aquí se maneja el envío del formulario y el manejo del mensaje de error
+        const urlParams = new URLSearchParams(window.location.search);
+        if (urlParams.has('error')) {
+            document.getElementById('error-message').style.display = 'block';
+        }
+    </script>
+</body>
+</html>

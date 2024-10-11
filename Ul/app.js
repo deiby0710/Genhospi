@@ -5,6 +5,31 @@ const mysql = require('mysql2');
 const medicamentosRouter = require('./routes/medicamentos');
 const ExcelJS = require('exceljs');
 const fs = require('fs');
+const session = require('express-session');
+
+
+// Middleware para parsear datos del formulario
+app.use(express.urlencoded({ extended: true }));
+
+// Servir archivos estáticos desde la carpeta 'public'
+app.use(express.static(path.join(__dirname, 'public')));
+
+// Ruta para manejar el login
+app.post('/login', (req, res) => {
+    const username = req.body.username;
+    const password = req.body.password;
+
+    // Usuario y contraseña fijos (puedes cambiarlos)
+    const fixedUsername = 'usuario';
+    const fixedPassword = 'contraseña';
+
+    if (username === fixedUsername && password === fixedPassword) {
+        res.redirect('index.html'); // Redirige a index.html si las credenciales son correctas
+    } else {
+        // Redirigir de vuelta a login.html con un mensaje de error en la URL
+        res.redirect('/login.html?error=true');
+    }
+});
 
 // Middleware para manejar JSON en las solicitudes
 app.use(express.json());
@@ -15,7 +40,7 @@ const connection = mysql.createConnection({
     user: 'root',
     password: '12345',
     database: 'datospacientemed'
-}); // hola
+});
 
 // Verificar la conexión a la base de datos
 connection.connect((err) => {
@@ -258,5 +283,5 @@ app.get('/generar-reporte', (req, res) => {
 
 // Iniciar el servidor
 app.listen(3000, () => {
-    console.log('Servidor escuchando en el puerto http://localhost:3000');
+    console.log('Servidor escuchando en el puerto http://localhost:3000/login.html');
 });
