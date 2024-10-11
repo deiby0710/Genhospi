@@ -1,0 +1,65 @@
+@import url(../menu/menu.css);
+
+@import "compass/css3";
+@import url(https://fonts.googleapis.com/css?family=Vibur);
+
+
+body {
+    background: linear-gradient(#ffc107, #fefefe);
+    background-attachment: fixed;
+    background-size: cover; /* Asegura que el fondo cubra toda la página */
+    height: 100vh;
+    margin: 0;
+    font-family: serif;
+    /* font-family: 'Trebuchet MS', verdana, sans-serif; */
+}
+/* Estilos personalizados */
+.form-container {
+        background-color: #ffeeba; /* Fondo del formulario en un tono amarillo suave */
+        padding: 20px;
+        border-radius: 10px;
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    }
+.form-group label {
+    color: #856404; /* Color del texto en un tono marrón para contraste */
+}
+
+#consultaForm {
+    background-color: #ffeeba; /* Fondo del formulario en un tono amarillo suave */
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+.form-inline-label {
+    display: inline-block;
+    width: 190px; /* Ajusta el ancho según sea necesario */
+    vertical-align: middle;
+}
+.form-inline-input {
+    display: inline-block;
+    width: 13rem;
+    vertical-align: middle;
+}
+
+/* Impresion */
+.fecha-actual{
+    margin: 0;
+    display: none;
+}
+.link-imp{
+    text-decoration: none;
+    color: #969799;
+    font-weight: normal;
+    display: none;
+}
+
+@media print {
+    .formulario_consulta,
+    .barra_nav {
+        display: none;
+    }
+    .fecha-actual, .link-imp{
+        display: block;
+    }
+}

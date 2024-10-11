@@ -1,0 +1,85 @@
+@import url(../menu/menu.css);
+@import "compass/css3";
+@import url(https://fonts.googleapis.com/css?family=Vibur);
+@import url();
+
+body {
+    background: linear-gradient(#ffc107, #fefefe);
+    background-attachment: fixed;
+    background-size: cover; /* Asegura que el fondo cubra toda la página */
+    height: 100vh;
+    margin: 0;
+    font-family: serif;
+}
+
+/* Estilos personalizados */
+.form-container {
+    background-color: #ffeeba; /* Fondo del formulario en un tono amarillo suave */
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+.form-group label {
+    color: #856404; /* Color del texto en un tono marrón para contraste */
+}
+
+.form-inline-label {
+    display: inline-block;
+    width: 150px; /* Ajusta el ancho según sea necesario */
+    vertical-align: middle;
+}
+.form-inline-input {
+    display: inline-block;
+    width: 15rem;
+    vertical-align: middle;
+}
+
+a {
+    text-decoration: none;
+    color: black;
+}
+
+a:hover{
+    color: #969799;
+}
+
+/* Control + P*/
+
+.header_pdf{
+    width: 100%;
+    height: 80px;
+    display: none;
+    align-items: center;
+    justify-content: center;
+}
+.SOS {
+    flex-direction: left;
+    position: absolute;
+    left: 1%;
+    top: 1%;
+}
+.link_final {
+    width: 100%;
+    display: none;
+    align-items: center;
+    justify-content: flex-start;
+}
+.link_final a {
+    color: #969799;
+    font-weight: normal;
+}
+@media print {
+    .formulario_consulta,
+    .barra_nav {
+        display: none;
+    }
+    .header_pdf {
+        display: block;
+    }
+    .link_final {
+        display: block;
+    }
+}
+/* .tabla tr td {
+    border: 1px solid black;
+} */

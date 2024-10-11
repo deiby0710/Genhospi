@@ -1,0 +1,44 @@
+@import url(../menu/menu.css);
+
+@import "compass/css3";
+@import url(https://fonts.googleapis.com/css?family=Vibur);
+
+body {
+    background: linear-gradient(#ffc107, #fefefe);
+    background-attachment: fixed;
+    background-size: cover; /* Asegura que el fondo cubra toda la página */
+    height: 100vh;
+    margin: 0;
+}
+/* Estilos personalizados */
+.form-container {
+        background-color: #ffeeba; /* Fondo del formulario en un tono amarillo suave */
+        padding: 20px;
+        border-radius: 10px;
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    }
+.form-group label {
+    color: #856404; /* Color del texto en un tono marrón para contraste */
+}
+.form-group{
+    margin: 0;
+    padding: 0;
+}
+
+#consultaForm {
+    background-color: #ffeeba; /* Fondo del formulario en un tono amarillo suave */
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+.form-inline-label {
+    display: inline-block;
+    width: 180px; /* Ajusta el ancho según sea necesario */
+    vertical-align: middle;
+}
+.form-inline-input {
+    display: inline-block;
+    width: 13.5rem;
+    vertical-align: middle;
+}

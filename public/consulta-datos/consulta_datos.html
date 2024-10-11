@@ -1,0 +1,297 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Consulta SOAP</title>
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Merriweather&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="consulta_datos.css">
+</head>
+<body>
+    <div class="header_pdf">
+        <img src="../../images/Sos_logo.png" class="logo SOS">
+    </div>
+    <nav class="barra_nav">
+        <img src="../../images/logo.png" class="logo logo_Gh">
+        <ul>
+            <li><a href="../consulta-datos/consulta_datos.html">Consulta Afiliado</a></li>
+            <li><a href="../consulta-formula/consulta_formula.html">Verificar Formula</a></li>
+            <li><a href="../ops/ops.html">Entrega de Datos</a></li>
+            <li><a href="../entrega-datos/entrega_datos.html">Consulta OPS</a></li>
+            <li><button id="logoutButton"><i class="fas fa-sign-out-alt"></i></button></li>
+        </ul>
+    </nav>
+    <div class="container mt-1 formulario_consulta">
+        <h1 class="text-center text-dark mb-4">Consulta Afiliado</h1>
+        <div class="row justify-content-center">
+            <div class="col-md-5">
+                <div class="form-container">
+                    <form id="consultaForm">
+                        <div class="form-group">
+                            <label for="tipoDocId" class="form-inline-label">Tipo de Documento:</label>
+                            <select id="tipoDocId" name="tipoDocId" class="form-control form-inline-input" required>
+                                <option value="CC">CC</option>
+                                <option value="AS">AS</option>
+                                <option value="CE">CE</option>
+                                <option value="CN">CN</option>
+                                <option value="MS">MS</option>
+                                <option value="NI">NI</option>
+                                <option value="PA">PA</option>
+                                <option value="PE">PE</option>
+                                <option value="PT">PT</option>
+                                <option value="RC">RC</option>
+                                <option value="SC">SC</option>
+                                <option value="TI">TI</option>
+                            </select>
+                        </div>
+    
+                        <div class="form-group">
+                            <label for="numeroDocId" class="form-inline-label">Documento:</label>
+                            <input type="text" id="numeroDocId" name="numeroDocId" value="" class="form-control form-inline-input" required>
+                        </div>
+    
+                        <div class="form-group">
+                            <label for="plan" class="form-inline-label">Plan:</label>
+                            <select id="plan" name="plan" class="form-control form-inline-input" required>
+                                <option value="pos">POS</option>
+                                <option value="familiar">FAMILIAR</option>
+                                <option value="excelente">EXCELENCIA</option>
+                                <option value="quimbaya">QUIMBAYA</option>
+                                <option value="bienestar">BIENESTAR</option>
+                                <option value="pos subsidiado">POS SUBSIDIADO</option>
+                                <option value="especial senior">ESPECIAL SENIOR</option>
+                                <option value="privilegio">PRIVILEGIO</option>
+                                <option value="pac plus">PAC PLUS</option>
+                                <option value="pos plus">POS PLUS</option>
+                            </select>
+                        </div>
+    
+                        <div class="form-group">
+                            <label for="loginUsuario" class="form-inline-label">Usuario:</label>
+                            <input type="text" id="loginUsuario" name="loginUsuario" value="UD949151153" class="form-control form-inline-input" required readonly>
+                        </div>
+                        <div class="d-flex justify-content-center">
+                            <button type="submit" class="btn btn-custom btn-block">Consultar</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+
+    <div id="response"></div>
+    <div class="link_final"><a href="https://centralaplicaciones.sos.com.co/ServiciosExternosSaludRESTWeb/rest/FormulacionWS/consultar" 
+        target="_blank" 
+        rel="noopener noreferrer">https://centralaplicaciones.sos.com.co/ServiciosExternosSaludRESTWeb/rest/FormulacionWS/consultarS</a>
+    </div>
+
+    <script>
+        //El siguiente es un manejador de eventos que escucha a submit
+        document.getElementById('consultaForm').addEventListener('submit', function(event) {
+            event.preventDefault();
+            sendSoapRequest();
+        });
+    
+        async function sendSoapRequest() {
+            const tipoDocId = document.getElementById('tipoDocId').value;
+            const numeroDocId = document.getElementById('numeroDocId').value;
+            const plan = document.getElementById('plan').value;
+            const loginUsuario = document.getElementById('loginUsuario').value;
+            //Cuerpo del SOAP, este se envia a un web service a traves de una solicitud HTTP
+            const soapBody = `
+                    <soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:con="http://consulta.validador.ws.sos">
+                    <soapenv:Header/>
+                    <soapenv:Body>
+                        <con:getConsultaAfiliado>
+                            <tipoDocId>${tipoDocId}</tipoDocId>
+                            <numeroDocId>${numeroDocId}</numeroDocId>
+                            <plan>${plan}</plan>
+                            <loginUsuario>${loginUsuario}</loginUsuario>
+                        </con:getConsultaAfiliado>
+                    </soapenv:Body>
+                    </soapenv:Envelope>
+            `;
+                
+            try {
+                const response = await fetch('/proxy', {
+                // const response = await fetch('http://192.168.20.22:3000/proxy', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'text/xml; charset=utf-8',
+                        'SOAPAction': ''
+                    },
+                    body: soapBody
+                });
+                
+                const responseText = await response.text();
+                displayResponse(responseText);
+            } catch (error) {
+                document.getElementById('response').innerHTML = `Error: ${error.message}`;
+            }
+        }
+
+        
+        
+        function displayResponse(xmlString) {
+    const parser = new DOMParser();
+    const xmlDoc = parser.parseFromString(xmlString, 'text/xml');
+
+    const soapBody = xmlDoc.getElementsByTagName('soapenv:Body')[0];
+    if (!soapBody) {
+        document.getElementById('response').innerHTML = '<div class="response-item">No se encontró el cuerpo de la respuesta.</div>';
+        return;
+    }
+
+    // Obtener la fecha y hora actual
+    const fechaHoraActual = new Date();
+    const fecha = fechaHoraActual.toLocaleDateString(); // Obtiene la fecha
+    const hora = fechaHoraActual.toLocaleTimeString();  // Obtiene la hora
+
+    const numeroIdentificacion = soapBody.getElementsByTagName('numeroIdentificacion')[0]?.textContent;
+    const plan = soapBody.getElementsByTagName('plan')[0]?.textContent;
+    const fechaNacimiento = soapBody.getElementsByTagName('fechaNacimiento')[0]?.textContent;
+    const primerNombre = soapBody.getElementsByTagName('primerNombre')[0]?.textContent;
+    const primerApellido = soapBody.getElementsByTagName('primerApellido')[0]?.textContent;
+    const segundoApellido = soapBody.getElementsByTagName('segundoApellido')[0]?.textContent;
+    const segundoNombre = soapBody.getElementsByTagName('segundoNombre')[0]?.textContent;
+    const nombreCompleto = `${primerNombre || ''} ${segundoNombre || ''} ${primerApellido || ''} ${segundoApellido || ''}`.trim();
+    const sexo = soapBody.getElementsByTagName('sexo')[0]?.textContent;
+    const parentesco = soapBody.getElementsByTagName('parentesco')[0]?.textContent;
+    const rangoSalarial = soapBody.getElementsByTagName('rangoSalarial')[0]?.textContent;
+    const planComplementario = soapBody.getElementsByTagName('planComplementario')[0]?.textContent;
+    const tipoAfiliado = soapBody.getElementsByTagName('tipoAfiliado')[0]?.textContent;
+    const inicioVigencia = soapBody.getElementsByTagName('inicioVigencia')[0]?.textContent;
+    const finVigencia = soapBody.getElementsByTagName('finVigencia')[0]?.textContent;
+    const descripcionIpsPrimaria = soapBody.getElementsByTagName('descripcionIpsPrimaria')[0]?.textContent;
+    const semanasAfiliacionPosSOS = soapBody.getElementsByTagName('semanasAfiliacionPosSOS')[0]?.textContent;
+    const semanasAfiliacionPosAnterior = soapBody.getElementsByTagName('semanasAfiliacionPosAnterior')[0]?.textContent;
+    const semanasPacSos = soapBody.getElementsByTagName('semanasPacSos')[0]?.textContent;
+    const semanasPacAnterior = soapBody.getElementsByTagName('semanasPacAnterior')[0]?.textContent;
+    const estado = soapBody.getElementsByTagName('estado')[0]?.textContent;
+    const derecho = soapBody.getElementsByTagName('derecho')[0]?.textContent;
+    
+    const tipoIdEmpleador = soapBody.getElementsByTagName('tipoIdEmpleador')[0]?.textContent;
+    const numeroIdEmpleador = soapBody.getElementsByTagName('numeroIdEmpleador')[0]?.textContent;
+    const razonSocial = soapBody.getElementsByTagName('razonSocial')[0]?.textContent;
+
+    const convenios = soapBody.getElementsByTagName('DatosConvenioCapitacion');
+    let tableContent = `
+            <div class="container mt-2">
+        <h5 class="text-center fs-4"><strong>Información de los Convenios de Capitación</strong></h5>
+        <table class="tabla table table-bordered table-striped table-sm">
+            <tbody>
+                <tr>
+                    <td class="text-center" class="text-center"><strong>Convenio</strong></td>
+                    <td class="text-center" class="text-center"><strong>Estado</strong></td>
+                </tr>
+    `;
+
+    for (let i = 0; i < convenios.length; i++) {
+        const descripcionConvenio = convenios[i].getElementsByTagName('descripcionConvenio')[0]?.textContent;
+        const serviciosCapitados = convenios[i].getElementsByTagName('DatosServicioCapitadoCaja');
+        
+        if (serviciosCapitados.length > 0) {
+            const accion = serviciosCapitados[0].getElementsByTagName('accion')[0]?.textContent;
+
+            // Agrega una fila con el valor de 'descripcionConvenio' y 'accion'
+            tableContent += `
+                <tr>
+                    <td class="text-center">${descripcionConvenio}</td>
+                    <td class="text-center">${accion}</td>
+                </tr>
+            `;
+        }
+    }
+    tableContent += `
+                </tbody>
+            </table>
+        </div>
+    `
+
+    // Mostrar solo los datos específicos
+    if (numeroIdentificacion!==undefined) {
+        let responseContent = `
+    <div class="container mt-2">
+        <h5 class="text-center fs-4"><strong>Datos Personales</strong></h5>
+        <table class="tabla table table-bordered table-striped table-sm ">
+            <tbody>
+                <tr>
+                    <td><strong>Fecha:</strong> ${fecha},${hora}</td>
+                    <td><strong>Número de Identificación:</strong> ${numeroIdentificacion}</td>
+                    <td><strong>Plan: </strong>${plan}</td>
+                </tr>
+                <tr>
+                    <td colspan="3" class="text-center"><strong>Nombre completo:</strong> ${nombreCompleto}</td>
+                </tr>
+                <tr>
+                    <td><strong>Fecha de nacimiento:</strong> ${fechaNacimiento}</td>
+                    <td><strong>Género:</strong> ${sexo}</td>
+                    <td><strong>Parentesco:</strong> ${parentesco}</td>
+                </tr>
+                <tr>
+                    <td><strong>Rango Salarial:</strong> ${rangoSalarial}</td>
+                    <td><strong>Plan Complementario:</strong> ${planComplementario}</td>
+                    <td><strong>Tipo Afiliado:</strong> ${tipoAfiliado}</td>
+                </tr>
+                <tr>
+                    <td><strong>Inicio Vigencia:</strong> ${inicioVigencia}</td>
+                    <td><strong>Fin Vigencia:</strong> ${finVigencia}</td>
+                    <td><strong>IPS Primaria:</strong> ${descripcionIpsPrimaria}</td>
+                </tr>
+                <tr>
+                    <td><strong>Semanas POS S.O.S:</strong> ${semanasAfiliacionPosSOS}</td>
+                    <td><strong>Semanas POS Anterior:</strong> ${semanasAfiliacionPosAnterior}</td>
+                    <td><strong>Semanas PAC S.O.S:</strong> ${semanasPacSos}</td>
+                </tr>
+                <tr>
+                    <td><strong>Semanas PAC Anterior:</strong> ${semanasPacAnterior}</td>
+                    <td><strong>Estado:</strong> ${estado}</td>
+                    <td><strong>Derecho:</strong> ${derecho}</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+    <div class="container mt-2">
+        <h5 class="text-center fs-4"><strong>Empleadores</strong></h5>
+        <table class="tabla table table-bordered table-striped table-sm">
+            <tbody>
+                <tr>
+                    <td class="text-center" class="text-center"><strong>Tipo ID</strong></td>
+                    <td class="text-center" class="text-center"><strong>Número ID</strong></td>
+                    <td class="text-center"><strong>Razón Social</strong></td>
+                </tr>
+                <tr>
+                    <td class="text-center" class="text-center">${tipoIdEmpleador}</td>
+                    <td class="text-center" class="text-center">${numeroIdEmpleador}</td>
+                    <td class="text-center" class="text-center">${razonSocial}</td>
+                </tr>
+                </tbody>
+        </table>
+    </div>
+    ${tableContent}
+
+`;
+
+    document.getElementById('response').innerHTML = responseContent;
+} else {
+    var alertContent = `
+        <div class="container text-center" role="alert">
+        <h4>No se ha encontrado el usuario</h4>
+        </div>
+    `;
+    document.getElementById('response').innerHTML = alertContent;
+}
+}
+    // Script para manejar la acción de cerrar sesión
+    document.getElementById('logoutButton').addEventListener('click', function() {
+            // Ejemplo de redirección a una página de cierre de sesión
+            window.location.href = '../index.html';
+        });
+    </script>
+    </script>
+</body>
+</html>

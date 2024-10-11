@@ -1,0 +1,219 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Consulta SOAP</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="consulta_formula.css">
+</head>
+<body>
+    <!-- MENU -->
+    <nav class="barra_nav">
+        <img src="../../images/logo.png" class="logo">
+        <ul>
+            <li><a href="../consulta-datos/consulta_datos.html">Consulta Afiliado</a></li>
+            <li><a href="../consulta-formula/consulta_formula.html">Verificar Formula</a></li>
+            <li><a href="../ops/ops.html">Entrega de Datos</a></li>
+            <li><a href="../entrega-datos/entrega_datos.html">Consulta OPS</a></li>
+            <li><button id="logoutButton"><i class="fas fa-sign-out-alt"></i></button></li>
+        </ul>
+    </nav>
+    <!-- -------------------------------------------------------------------------------- -->
+    <!-- FORMULARIO -->
+    <div class="container mt-1 formulario_consulta">
+        <h1 class="text-center text-dark mb-4">Consulta Formula</h1>
+        <div class="row justify-content-center">
+            <div class="col-md-5">
+                <form onsubmit="event.preventDefault(); consultarFormula();" id="consultaForm">
+                    <div class="form-group">
+                        <label for="tipoIdentificacion" class="form-inline-label">Tipo de Identificación:</label>
+                        <select id="tipoIdentificacion" name="tipoIdentificacion" class="form-control form-inline-input" required>
+                            <option value="CC">CC</option>
+                            <option value="AS">AS</option>
+                            <option value="CE">CE</option>
+                            <option value="CN">CN</option>
+                            <option value="MS">MS</option>
+                            <option value="NI">NI</option>
+                            <option value="PA">PA</option>
+                            <option value="PE">PE</option>
+                            <option value="PT">PT</option>
+                            <option value="RC">RC</option>
+                            <option value="SC">SC</option>
+                            <option value="TI">TI</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="numeroFormula" class="form-inline-label">Número de Fórmula:</label>
+                        <input type="text" id="numeroFormula" name="numeroFormula" class="form-control form-inline-input" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="numeroIdentificacion" class="form-inline-label">Número de Identificación:</label>
+                        <input type="text" id="numeroIdentificacion" name="numeroIdentificacion" class="form-control form-inline-input" required>
+                    </div>
+                    <div class="d-flex justify-content-center">
+                        <button type="submit" class="btn btn-custom btn-block">Consultar</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+    
+    <div id="resultado"></div>
+    <script>
+    document.getElementById("consultaForm").addEventListener("submit", async function(event) {
+        event.preventDefault(); // Evita que el formulario recargue la página al enviarlo
+
+        const numeroFormula = document.getElementById("numeroFormula").value;
+        const numeroIdentificacion = document.getElementById("numeroIdentificacion").value;
+        const tipoIdentificacion = document.getElementById("tipoIdentificacion").value;
+
+        try {
+            // Realiza la petición al servidor
+            const response = await fetch('/api/soap', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify({
+                    numeroFormula: numeroFormula,
+                    numeroIdentificacion: numeroIdentificacion,
+                    tipoIdentificacion: tipoIdentificacion
+                })
+            });
+            const responseText = await response.text();
+            const parser = new DOMParser();
+            const xmlDoc = parser.parseFromString(responseText, 'text/xml');
+            const soapBody = xmlDoc.getElementsByTagName('soapenv:Body')[0];
+            if (!soapBody) {
+            document.getElementById('response').innerHTML = '<div class="response-item">No se encontró el cuerpo de la respuesta.</div>';
+            return;
+        }
+
+        const numeroDocumentoIPS = soapBody.getElementsByTagName('numeroDocumentoIPS')[0]?.textContent;
+        const numeroFormula1 = soapBody.getElementsByTagName('numeroFormula')[0]?.textContent;
+        // Obtener la fecha y hora actual
+        const fechaHoraActual = new Date();
+        const fecha = fechaHoraActual.toLocaleDateString(); // Obtiene la fecha
+        const hora = fechaHoraActual.toLocaleTimeString();  // Obtiene la hora
+
+
+        const tipoIdentificacion1 = soapBody.getElementsByTagName('tipoIdentificacion')[0]?.textContent;
+        const documento = soapBody.getElementsByTagName('numeroIdentificacion')[0]?.textContent;
+        const episodio = soapBody.getElementsByTagName('numeroHistoriaClinica')[0]?.textContent;
+        const fechaFormula = soapBody.getElementsByTagName('fechaFormula')[0]?.textContent;
+        const horaFormula = soapBody.getElementsByTagName('horaFormula')[0]?.textContent;
+        const numeroHistoriaClinica = soapBody.getElementsByTagName('numeroHistoriaClinica')[0]?.textContent;
+        const primerNombre = soapBody.getElementsByTagName('primerNombre')[0]?.textContent;
+        const primerApellido = soapBody.getElementsByTagName('primerApellido')[0]?.textContent;
+        const segundoApellido = soapBody.getElementsByTagName('segundoApellido')[0]?.textContent;
+        const segundoNombre = soapBody.getElementsByTagName('segundoNombre')[0]?.textContent;
+        const nombreCompleto = `${primerNombre || ''} ${segundoNombre || ''} ${primerApellido || ''} ${segundoApellido || ''}`.trim();
+        const telefonoCelular = soapBody.getElementsByTagName('telefonoCelular')[0]?.textContent;
+        const tipoUsuario = soapBody.getElementsByTagName('tipoUsuario')[0]?.textContent;
+        const direccionResidencia = soapBody.getElementsByTagName('direccionResidencia')[0]?.textContent;
+        
+        const datosMed = soapBody.getElementsByTagName('datosMedicamentos');
+        if (documento!==undefined) {
+        let tableContent = `
+            <div class="container mt-2"><br>
+        <table class="tabla table table-bordered table-striped table-sm">
+            <tbody>
+                <tr>
+                    <td class="text-center"><strong>Medicamento</strong></td>
+                    <td class="text-center"><strong>Dosis</strong></td>
+                    <td class="text-center"><strong>Frecuencia</strong></td>
+                    <td class="text-center"><strong>Via de administración</strong></td>
+                    <td class="text-center"><strong>Cantidad</strong></td>
+                    <td class="text-center"><strong>Duración tratamiento(día)</strong></td>
+                    <td class="text-center"><strong>Indicaciones</strong></td>
+                </tr>
+    `;
+    for (let i = 0; i < datosMed.length; i++) {
+        const nombreMedicamento = datosMed[i].getElementsByTagName('nombreMedicamento')[0]?.textContent;
+        const cantidadDosis = parseInt(datosMed[i].getElementsByTagName('cantidadDosis')[0]?.textContent);
+        const cantidadFrecuencia = parseInt(datosMed[i].getElementsByTagName('cantidadFrecuencia')[0]?.textContent);
+        const viaAdministracion = datosMed[i].getElementsByTagName('viaAdministracion')[0]?.textContent;
+        
+        const cantidadAEntregar = parseInt(datosMed[i].getElementsByTagName('cantidadAEntregar')[0]?.textContent);
+        const cantidadAEntregarLetras = datosMed[i].getElementsByTagName('cantidadAEntregarLetras')[0]?.textContent;
+        const cantidadFinal = `${cantidadAEntregar} ${cantidadAEntregarLetras}`;
+        
+        const fechaInicioTratamiento = new Date(datosMed[i].getElementsByTagName('fechaInicioTratamiento')[0]?.textContent);
+        const fechaFinTratamiento = new Date(datosMed[i].getElementsByTagName('fechaFinTratamiento')[0]?.textContent);
+        
+        // Calcula la duración en días
+        const duracionDias = Math.ceil((fechaFinTratamiento - fechaInicioTratamiento) / (1000 * 60 * 60 * 24));
+        
+        const indicaciones = datosMed[i].getElementsByTagName('indicaciones')[0]?.textContent;
+        
+        // Agrega una fila con los datos
+        tableContent += `
+            <tr>
+                <td class="text-center">${nombreMedicamento}</td>
+                <td class="text-center">${cantidadDosis}</td>
+                <td class="text-center">${cantidadFrecuencia}</td>
+                <td class="text-center">${viaAdministracion}</td>
+                <td class="text-center">${cantidadFinal}</td>
+                <td class="text-center">${duracionDias}</td>
+                <td class="text-center">${indicaciones}</td>
+            </tr>
+        `;
+    }
+tableContent += `
+        </tbody>
+    </table>
+</div>
+`;
+        
+        let responseContent = `
+        <h6 class="fecha-actual">Fecha consulta: ${fecha}, ${hora}</h6>
+        <a class="link-imp" href="https://centralaplicaciones.sos.com.co/ServiciosExternosSaludRESTWeb/rest/FormulacionWS/consultar" target="_blank">https://centralaplicaciones.sos.com.co/ServiciosExternosSaludRESTWeb/rest/FormulacionWS/consultar</a>
+        <div class="container mt-2">
+            <h6 class="text-center fs-4 m-0">NIT ${numeroDocumentoIPS}</h6>
+            <h6 class="text-center fs-4 m-0">Número de orden: ${numeroFormula1}</h6>
+            <table class="tabla table table-bordered table-striped table-sm">
+                <tbody>
+                    <tr>
+                        <td class="text-center"><strong>Fecha y hora de expedición</strong>: ${fechaFormula}/${horaFormula}</td>
+                        <td class="text-center"  colspan="2"><strong>Fecha y hora registro:</strong> ${fechaFormula}/${horaFormula}</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Historia Clínica:</strong> ${tipoIdentificacion1}  ${numeroIdentificacion}</td>
+                        <td  colspan="2"><strong>Paciente:</strong> ${nombreCompleto}</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Documento: </strong>${documento}</td>
+                        <td><strong>Teléfono : </strong>${telefonoCelular}</td>
+                        <td class="text-center"><strong>Episodio:</strong> ${numeroHistoriaClinica}</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Dirección: </strong>${direccionResidencia}</td>
+                        <td colspan="2"><strong>Régimen: </strong>${tipoUsuario}</td>
+                    </tr>
+                    </tbody>
+            </table>
+        </div>
+        ${tableContent}
+        `
+        document.getElementById('resultado').innerHTML = responseContent;
+    } else {
+        var alertContent = `
+        <div class="container text-center" role="alert">
+        <h4>No se ha encontrado el usuario</h4>
+        </div>
+    `;
+    document.getElementById('resultado').innerHTML = alertContent;
+    }
+    } catch (error) {
+        // Muestra el error en la consola o en el DOM si ocurre
+        console.error('Ocurrió un error:', error);
+        document.getElementById('resultado').textContent = 'Error al procesar la solicitud';
+    }
+    
+    }
+);
+    </script>
+</body>
+</html>
