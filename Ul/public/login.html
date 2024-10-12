@@ -10,7 +10,7 @@
 </head>
 <body>
     <div class="login-form">
-        <img src="/images/logo.jpg" alt="Vini" class="logo">
+        <img src="../img/logo.png" alt="Vini" class="logo">
         <form id="loginForm" method="POST" action="/login"> <!-- Acción POST para login -->
             <div class="form-group">
                 <input type="text" class="form-control campo-text" placeholder="Username" name="username" id="UserName" required>
@@ -33,8 +33,26 @@
 
     <script>
         // Aquí se maneja el envío del formulario y el manejo del mensaje de error
-        const urlParams = new URLSearchParams(window.location.search);
-        if (urlParams.has('error')) {
+        // const urlParams = new URLSearchParams(window.location.search);
+        // if (urlParams.has('error')) {
+        //     document.getElementById('error-message').style.display = 'block';
+        // }
+        // Función para obtener parámetros de la URL
+        function getParameterByName(name) {
+            const url = window.location.href;
+            name = name.replace(/[\[\]]/g, '\\$&');
+            const regex = new RegExp('[?&]' + name + '(=([^&#]*)|&|#|$)'),
+                  results = regex.exec(url);
+            if (!results) return null;
+            if (!results[2]) return '';
+            return decodeURIComponent(results[2].replace(/\+/g, ' '));
+        }
+
+        // Comprobar si existe el parámetro "error" en la URL
+        const error = getParameterByName('error');
+
+        // Mostrar el mensaje de error si el parámetro está presente
+        if (error === 'true') {
             document.getElementById('error-message').style.display = 'block';
         }
     </script>

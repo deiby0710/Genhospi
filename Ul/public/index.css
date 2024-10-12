@@ -132,7 +132,7 @@ body {
     font-size: 1.2em; /* Tamaño de letra adecuado */
     font-weight: bold; /* Hacer el texto un poco más llamativo */
     color: #333333; /* Color oscuro para buena legibilidad */
-    background-color: #fefbf3; /* Fondo amarillo similar al estilo de la página */
+    background-color: #f7db8c; /* Fondo amarillo similar al estilo de la página */
     padding: 20px 20px; /* Espaciado alrededor del texto */
     border-radius: 8px; /* Bordes redondeados */
     text-align: center; /* Centrar el texto */
@@ -149,3 +149,19 @@ body {
     0% { opacity: 0; }
     100% { opacity: 1; }
 }
+
+@media print {
+    .botones,
+    .consu
+     { 
+        display: none !important;
+    }
+}
+
+input[type=number]::-webkit-inner-spin-button, 
+input[type=number]::-webkit-outer-spin-button { 
+  -webkit-appearance: none; 
+  margin: 0; 
+}
+
+input[type=number] { -moz-appearance:textfield; }

@@ -22,7 +22,7 @@
                 <div class="div_botones">
                 </div>
         </div><br>
-        <h1 class="text-center text-dark mb-6" id="texto_principal">Datos Afiliado</h1>
+        <h1 class="text-center text-dark mb-6 consu" id="texto_principal">Datos Afiliado</h1>
         <div class="formulario_principal" id="id_formulario_principal">
             <div class="row">
                 <div class="col-md-12">
@@ -211,7 +211,7 @@
                             <tr>
                                 <th><input type="text" id="observacion" class="form-control"></th>
                                 <th class="d-flex">
-                                    <input type="number" id="cantidad_pendiente" class="form-control w-25 ml-1" required>
+                                    <input type="number" id="cantidad_pendiente" class="form-control w-50 ml-1" required>
                                     <button type="submit" id="btn_cantidad_pendiente" class="btn btn-custom btn-block ml-2 w-100">Cantidad Pendiente</button>
                                 </th>
                             </tr>
@@ -298,7 +298,7 @@
     </div>
     
     <div id="consulta_usuario" class="container">
-        <form id="form_consultar" class="mb-3 d-flex mb-3 justify-content-center align-items-center">
+        <form id="form_consultar" class="mb-3 d-flex mb-3 justify-content-center align-items-center consu">
             <input type="text" id="identificacion_c" name="identificacion" class="form-control w-25" placeholder="Ingrese la identificación">
             <button type="submit" id="btn_buscar" class="btn btn-dark ml-2">Buscar</button>
         </form>
@@ -327,6 +327,14 @@
     document.getElementById('username').setAttribute('registradopor',username);
     document.getElementById('username').innerText = `¡Bienvenido ${username} de la sede ${sede}!`;
     document.getElementById('sede_pendiente').value = `${sede}`;
+
+    // -----------------------------------------------------------------------
+
+    document.getElementById('celular2').addEventListener('input', function() {
+        if (this.value.length > 10) {
+            this.value = this.value.slice(0, 10); // Limita a 10 caracteres
+        }
+    });
 
     // -----------------------------------------------------------------------
     // Obtener el elemento input de fecha
