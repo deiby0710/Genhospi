@@ -285,7 +285,17 @@
                                 </td>
                                 <td><input type="text" id="AnombrePaciente" class="form-control form-paciente" required oninput="this.value = this.value.replace(/[^a-zA-ZáéíóúÁÉÍÓÚñÑ\s]/g, '');"></td>
                                     <td><input type="number" id="Acelular1" class="form-control form-telefono" required></td>
-                                <td><input type="text" id="Aeps" class="form-control form-eps" required></td>
+                                <!-- <td><input type="text" id="Aeps" class="form-control form-eps" required> -->
+                                    <td>
+                                        <select id="Aeps" name="plan" class="form-control form-eps form-inline-input" required>
+                                            <option value="EMSSANAR EPS SAS">EMSSANAR EPS SAS</option>
+                                            <option value="MALLAMAS EPS">MALLAMAS EPS</option>
+                                            <option value="SANITAS EPS">SANITAS EPS</option>
+                                            <option value="ASMET SALUD EPS">ASMET SALUD EPS</option>
+                                            <option value="SOS SALUD">SOS SALUD</option>
+                                        </select>
+                                    </td>
+                                </td>
                             </tr>
                         </tbody>
                     </table>
@@ -330,11 +340,15 @@
 
     // -----------------------------------------------------------------------
 
-    document.getElementById('celular2').addEventListener('input', function() {
+    c2 = document.getElementById('celular2');
+    c1 = document.getElementById('Acelular1');
+    function limitarCaracteres() {
         if (this.value.length > 10) {
             this.value = this.value.slice(0, 10); // Limita a 10 caracteres
         }
-    });
+    };
+    c1.addEventListener('input',limitarCaracteres)
+    c2.addEventListener('input',limitarCaracteres)
 
     // -----------------------------------------------------------------------
     // Obtener el elemento input de fecha
