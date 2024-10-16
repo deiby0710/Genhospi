@@ -207,7 +207,7 @@ app.post('/actualizar-cantidad', (req, res) => {
             if (!registro[`cantidadentregada${i}`]) {
                 registro[`cantidadentregada${i}`] = cantidadentregada; // Establecer nueva cantidad
                 registro[`fechaentrega${i}`] = fechaActual; // Establecer la fecha actual
-                registro[`entregadopor${i}`] = username; // Establecer la fecha actual
+                registro[`entrega${i}`] = username; // Establecer la fecha actual
                 break;
             }
         }
@@ -260,34 +260,34 @@ app.get('/generar-reporte', (req, res) => {
             { header: 'cantidadentregada', key: 'cantidadentregada', width: 20 },
             { header: 'cantidadentregada1', key: 'cantidadentregada1', width: 20 },
             { header: 'fechaentrega1', key: 'fechaentrega1', width: 20 },
-            { header: 'entregadopor1', key: 'entregadopor1', width: 20 },
+            { header: 'entrega1', key: 'entrega1', width: 20 },
             { header: 'cantidadentregada2', key: 'cantidadentregada2', width: 20 },
             { header: 'fechaentrega2', key: 'fechaentrega2', width: 20 },
-            { header: 'entregadopor2', key: 'entregadopor2', width: 20 },
+            { header: 'entrega2', key: 'entrega2', width: 20 },
             { header: 'cantidadentregada3', key: 'cantidadentregada3', width: 20 },
             { header: 'fechaentrega3', key: 'fechaentrega3', width: 20 },
-            { header: 'entregadopor3', key: 'entregadopor3', width: 20 },
+            { header: 'entrega3', key: 'entrega3', width: 20 },
             { header: 'cantidadentregada4', key: 'cantidadentregada4', width: 20 },
             { header: 'fechaentrega4', key: 'fechaentrega4', width: 20 },
-            { header: 'entregadopor4', key: 'entregadopor4', width: 20 },
+            { header: 'entrega4', key: 'entrega4', width: 20 },
             { header: 'cantidadentregada5', key: 'cantidadentregada5', width: 20 },
             { header: 'fechaentrega5', key: 'fechaentrega5', width: 20 },
-            { header: 'entregadopor5', key: 'entregadopor5', width: 20 },
+            { header: 'entrega5', key: 'entrega5', width: 20 },
             { header: 'cantidadentregada6', key: 'cantidadentregada6', width: 20 },
             { header: 'fechaentrega6', key: 'fechaentrega6', width: 20 },
-            { header: 'entregadopor6', key: 'entregadopor6', width: 20 },
+            { header: 'entrega6', key: 'entrega6', width: 20 },
             { header: 'cantidadentregada7', key: 'cantidadentregada7', width: 20 },
             { header: 'fechaentrega7', key: 'fechaentrega7', width: 20 },
-            { header: 'entregadopor7', key: 'entregadopor7', width: 20 },
+            { header: 'entrega7', key: 'entrega7', width: 20 },
             { header: 'cantidadentregada8', key: 'cantidadentregada8', width: 20 },
             { header: 'fechaentrega8', key: 'fechaentrega8', width: 20 },
-            { header: 'entregadopor8', key: 'entregadopor8', width: 20 },
+            { header: 'entrega8', key: 'entrega8', width: 20 },
             { header: 'cantidadentregada9', key: 'cantidadentregada9', width: 20 },
             { header: 'fechaentrega9', key: 'fechaentrega9', width: 20 },
-            { header: 'entregadopor9', key: 'entregadopor9', width: 20 },
+            { header: 'entrega9', key: 'entrega9', width: 20 },
             { header: 'cantidadentregada10', key: 'cantidadentregada10', width: 20 },
             { header: 'fechaentrega10', key: 'fechaentrega10', width: 20 },
-            { header: 'entregadopor10', key: 'entregadopor10', width: 20 },
+            { header: 'entrega10', key: 'entrega10', width: 20 },
             { header: 'cantidadpendientefinal', key: 'cantidadpendientefinal', width: 25 },
             { header: 'tipoentrega', key: 'tipoentrega', width: 15 },
             { header: 'sedependiente', key: 'sedependiente', width: 15 },

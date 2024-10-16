@@ -124,6 +124,19 @@ body {
 .last-btn {
     margin-left: 320px; /* Ajusta el margen izquierdo para moverlo más a la derecha */
 }
+.log-btn{
+    width: 150px;
+    height: 30px;
+    padding: 3px;
+    background-color:  #dc3545;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    font-size: 13px;
+    margin: 0 1px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
 
 /* Bienvenido */
 /* Estilos para el mensaje de bienvenida */

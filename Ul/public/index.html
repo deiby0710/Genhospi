@@ -18,7 +18,7 @@
                     <button id="agregar-paciente-btn-1" class="btn-success btn-custom-1">Agregar Paciente</button>
                     <button id="consulta-btn"class="btn-success btn-custom-1">Consulta Pendientes</button>
                     <button id="generar-reporte" class="btn-success btn-custom-1 last-btn" onclick="generarReporte()">Generar Reporte</button>
-                    <button id="logoutButton" class="log-btn btn-danger btn-custom-1">Cerrar Sesión</button>
+                    <button id="logoutButton" class="log-btn btn-danger">Cerrar Sesión</button>
                 </div>
         </div><br>
         <h1 class="text-center text-dark mb-6 consu" id="texto_principal">Datos Afiliado</h1>
@@ -610,7 +610,7 @@ document.getElementById('btn_cantidad_pendiente').addEventListener('click', func
 
     document.getElementById('guardar-btn').addEventListener('click', function() {
         // Obtener los valores de los inputs
-        fetch('http://localhost:3000/api/pendientes/ultimoNumeroFactura')
+        fetch('/api/pendientes/ultimoNumeroFactura')
     .then(response => response.json())
     .then(facturaData => {
         
@@ -694,7 +694,7 @@ document.getElementById('btn_cantidad_pendiente').addEventListener('click', func
 
 
         // Enviar los datos al servidor
-        fetch('http://localhost:3000/api/pendientes', {
+        fetch('/api/pendientes', {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json'
@@ -754,7 +754,7 @@ document.getElementById('agregar-paciente-btn').addEventListener('click', functi
         };
         
         // Enviar los datos al servidor
-        fetch('http://localhost:3000/api/pacientes', {
+        fetch('/api/pacientes', {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json'
@@ -849,7 +849,7 @@ if (data.pendientes.length > 0) {
                     <table class="table table-bordered">
                         <thead class="text-center" style="background-color:#FFF6D9;">
                             <tr>
-                                <th>Nº Factura</th>
+                                <th>Nº Pendiente</th>
                                 <th class="w-25">Fecha Registro</th>
                                 <th class="w-75">Medicamento</th>
                                 <th>Tipo Entrega</th>
@@ -1043,6 +1043,15 @@ function calcularPendienteFinal(index, id) {
         .then(data => {
             const cantidadPendiente = Number(data.cantidadpendientefinal) || 0;  // Valor actualizado desde la base de datos
 
+            // Validar si la cantidad entregada es mayor a la cantidad pendiente actualizada
+            if (cantidadEntregada > cantidadPendiente) {
+                alert('La cantidad entregada no puede ser mayor que la cantidad pendiente final.');
+                // Limpiar el campo si no cumple la validación y evitar cálculos
+                cantidadEntregadaElement.value = '';
+                cantidadPendienteFinalElement.textContent = cantidadPendiente; // Restaurar el valor original
+                cantidadPendienteFinalElementTD.style.backgroundColor = 'white'; // Restablecer el color a blanco
+                return;
+            }
             // Calcular el pendiente final
             const pendienteFinal = cantidadPendiente - cantidadEntregada;
             cantidadPendienteFinalElement.textContent = pendienteFinal >= 0 ? pendienteFinal : 0;
