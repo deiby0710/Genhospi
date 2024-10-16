@@ -18,8 +18,7 @@
                     <button id="agregar-paciente-btn-1" class="btn-success btn-custom-1">Agregar Paciente</button>
                     <button id="consulta-btn"class="btn-success btn-custom-1">Consulta Pendientes</button>
                     <button id="generar-reporte" class="btn-success btn-custom-1 last-btn" onclick="generarReporte()">Generar Reporte</button>
-                </div>
-                <div class="div_botones">
+                    <button id="logoutButton" class="log-btn btn-danger btn-custom-1">Cerrar Sesión</button>
                 </div>
         </div><br>
         <h1 class="text-center text-dark mb-6 consu" id="texto_principal">Datos Afiliado</h1>
@@ -270,6 +269,7 @@
                                 <td>
                                     <select id="AtipoIdentificacion" name="tipoIdentificacion" class="form-control form-inline-input" required>
                                         <option value="CC">CC</option>
+                                        <option value="TI">TI</option>
                                         <option value="AS">AS</option>
                                         <option value="CE">CE</option>
                                         <option value="CN">CN</option>
@@ -280,12 +280,11 @@
                                         <option value="PT">PT</option>
                                         <option value="RC">RC</option>
                                         <option value="SC">SC</option>
-                                        <option value="TI">TI</option>
+                                        
                                     </select>
                                 </td>
                                 <td><input type="text" id="AnombrePaciente" class="form-control form-paciente" required oninput="this.value = this.value.replace(/[^a-zA-ZáéíóúÁÉÍÓÚñÑ\s]/g, '');"></td>
                                     <td><input type="number" id="Acelular1" class="form-control form-telefono" required></td>
-                                <!-- <td><input type="text" id="Aeps" class="form-control form-eps" required> -->
                                     <td>
                                         <select id="Aeps" name="plan" class="form-control form-eps form-inline-input" required>
                                             <option value="EMSSANAR EPS SAS">EMSSANAR EPS SAS</option>
@@ -987,7 +986,7 @@ if (data.pendientes.length > 0) {
                 headers: {
                     'Content-Type': 'application/json',
                 },
-                body: JSON.stringify({ cantidadentregada, numerofactura, medicamento }),
+                body: JSON.stringify({ cantidadentregada, numerofactura, medicamento, username}),
             })
             .then(response => {
                 if (!response.ok) {
@@ -1086,5 +1085,20 @@ function generarReporte() {
                     alert('Ocurrió un error al generar el reporte');
                 });
         }
+
+        document.getElementById('logoutButton').addEventListener('click', function() {
+        // Hacer una solicitud al servidor para cerrar la sesión
+        fetch('/logout', {
+            method: 'POST',
+            credentials: 'include'  // Incluir cookies en la solicitud
+        }).then(response => {
+            if (response.ok) {
+                // Redirigir a la página de login después de cerrar sesión
+                window.location.href = '/login.html';
+            }
+        }).catch(error => {
+            console.error('Error al cerrar sesión:', error);
+        });
+    });
 
 </script>
