@@ -178,7 +178,6 @@
                                 <th class="text-center">Sede del Pendiente</th>
                                 <th class="text-center">Estado dispensacion</th>
                                 <th class="text-center">Cum</th>
-                                <th class="text-center">Concentracion</th>
                             </tr>
                         </thead>
                         <tbody>
@@ -194,7 +193,6 @@
                                     </select>
                                 </td>
                                 <td><input type="text" id="cum" maxlength="12" class="form-control"></td>
-                                <td><input type="text" id="concentracion" class="form-control"></td>
                             </tr>
                         </tbody>
                     </table>
@@ -494,11 +492,11 @@ document.getElementById('btn_cantidad_pendiente').addEventListener('click', func
     const sedePendiente = document.getElementById('sede_pendiente').value;
     const estadoDispensacion = document.getElementById('estado-dis').value;
     const cum = document.getElementById('cum').value;
-    const concentracion = document.getElementById('concentracion').value;
     const observacion = document.getElementById('observacion').value;
+    const fechaFormula = document.getElementById('fechaFormula').value;
 
 
-    if (!codigo || !producto || !laboratorio || !cantidadPendiente || !fechaRegistro  || !identificacion || !tipoProducto || !cantidadPrescrita || !tipoEntrega || !sedePendiente || !estadoDispensacion) {
+    if (!codigo || !producto || !laboratorio || !cantidadPendiente || !fechaRegistro  || !identificacion || !tipoProducto || !cantidadPrescrita || !tipoEntrega || !sedePendiente || !estadoDispensacion || !fechaFormula) {
         alert('Por favor completa los campos obligatorios');
         return;
     }
@@ -511,7 +509,6 @@ document.getElementById('btn_cantidad_pendiente').addEventListener('click', func
     document.getElementById("cobertura").value = "";
     document.getElementById("cantidad_prescrita").value = "";
     document.getElementById("cum").value = "";
-    document.getElementById("concentracion").value = "";
     document.getElementById("observacion").value = "";
     document.getElementById("cantidad_pendiente").value = "";
 
@@ -537,7 +534,6 @@ document.getElementById('btn_cantidad_pendiente').addEventListener('click', func
         <td class="text-center" style="display: none;">${sedePendiente}</td>
         <td class="text-center" style="display: none;">${estadoDispensacion}</td>
         <td class="text-center" style="display: none;">${cum}</td>
-        <td class="text-center" style="display: none;">${concentracion}</td>
         <td class="text-center" style="display: none;">${observacion}</td>
     `;
 
@@ -637,8 +633,7 @@ document.getElementById('btn_cantidad_pendiente').addEventListener('click', func
             const sedependiente = celdas[12].innerText;
             const estadodispensacion = celdas[13].innerText;
             const cum = celdas[14].innerText;
-            const concentracion = celdas[15].innerText;
-            const observacion = celdas[16].innerText;
+            const observacion = celdas[15].innerText;
         // Crear el objeto de datos
         const numeroformula = document.getElementById('numeroFormula').value;
         const celular = document.getElementById('celular1').value;
@@ -672,7 +667,6 @@ document.getElementById('btn_cantidad_pendiente').addEventListener('click', func
             sedependiente,
             estadodispensacion,
             cum,
-            concentracion,
             observacion,
             numeroformula,
             celular,
@@ -964,7 +958,7 @@ if (data.pendientes.length > 0) {
                         cantidadentregada.value  = ''
                     });
                 });
-                    alert('Se actualizaron los datos correctamenteee.');
+                    alert('Se actualizaron los datos correctamente.');
                 } else {
                     alert('Error al actualizar los datos.');
                 }

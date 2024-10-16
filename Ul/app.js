@@ -302,7 +302,6 @@ app.get('/generar-reporte', (req, res) => {
             { header: 'diagnostico', key: 'diagnostico', width: 30 },
             { header: 'plansos', key: 'plansos', width: 20 },
             { header: 'fechaformula', key: 'fechaformula', width: 20 },
-            { header: 'concentracion', key: 'concentracion', width: 20 },
             { header: 'observacion', key: 'observacion', width: 30 },
             { header: 'registradopor', key: 'registradopor', width: 30 }
         ];

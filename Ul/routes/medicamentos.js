@@ -85,7 +85,7 @@ router.post('/pendientes', (req, res) => {
     const {
         fecharegistro, identificacion, tipoidentificacion, nombre, medicamento, cantidadpendiente, numerofactura,
         tipoproducto, codigoproducto, cobertura, cantidadprescrita, tipoentrega, sedependiente, estadodispensacion,
-        cum, concentracion, observacion, numeroformula, celular, celular2, direccion, ambito, nitips, nombreips,
+        cum, observacion, numeroformula, celular, celular2, direccion, ambito, nitips, nombreips,
         tipocontrato, codigodiagnostico, diagnostico, plansos, fechaformula, laboratorio,eps, registradopor
     } = req.body;
 
@@ -114,7 +114,6 @@ router.post('/pendientes', (req, res) => {
         sedependiente: sedependiente || null,
         estadodispensacion: estadodispensacion || null,
         cum: cum || null,
-        concentracion: concentracion || null,
         observacion: observacion || null,
         numeroformula: numeroformula || null,
         celular: celular || null,
@@ -138,15 +137,15 @@ router.post('/pendientes', (req, res) => {
   INSERT INTO pendientes (
         fecharegistro, identificacion, tipoidentificacion, nombre, medicamento, cantidadpendiente, cantidadentregada, cantidadpendientefinal, numerofactura,
         tipoproducto, codigoproducto, cobertura, cantidadprescrita, tipoentrega, sedependiente, estadodispensacion,
-        cum, concentracion, observacion, numeroformula, celular, celular2, direccion, ambito, nitips, nombreips,
+        cum, observacion, numeroformula, celular, celular2, direccion, ambito, nitips, nombreips,
         tipocontrato, codigodiagnostico, diagnostico, plansos, fechaformula, laboratorio, eps, registradopor
-    ) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ? ,?, ?, ?)
+    ) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ? ,?, ?, ?)
 `;
 
 const values = [
     data.fecharegistro, data.identificacion, data.tipoidentificacion, data.nombre, data.medicamento, data.cantidadpendiente,0, data.cantidadpendiente, data.numerofactura,
     data.tipoproducto, data.codigoproducto, data.cobertura, data.cantidadprescrita, data.tipoentrega, data.sedependiente, data.estadodispensacion,
-    data.cum, data.concentracion, data.observacion, data.numeroformula, data.celular, data.celular2, data.direccion, data.ambito, data.nitips, data.nombreips,
+    data.cum, data.observacion, data.numeroformula, data.celular, data.celular2, data.direccion, data.ambito, data.nitips, data.nombreips,
     data.tipocontrato, data.codigodiagnostico, data.diagnostico, data.plansos, data.fechaformula, data.laboratorio, data.eps, data.registradopor
 ];
 
