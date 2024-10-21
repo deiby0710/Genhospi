@@ -28,10 +28,6 @@ app.post('/login', (req, res) => {
     const username = req.body.username;
     const password = req.body.password;
 
-    // // Usuario y contraseña fijos (puedes cambiarlos)
-    // const fixedUsername = 'sebas';
-    // const fixedPassword = '123';
-
     fs.readFile('usuarios.json', 'utf8', (err, data) => {
         if (err) {
             console.error('Error leyendo el archivo JSON:', err);
@@ -45,9 +41,10 @@ app.post('/login', (req, res) => {
         if (usuarioEncontrado) {
             // Almacena el nombre de usuario y la sede en la sesión
             req.session.username = usuarioEncontrado.username; // Almacenar el nombre de usuario en la sesión
-            req.session.sede = usuarioEncontrado.sede; // Almacenar la sede en la sesión
+            req.session.sede = usuarioEncontrado.sede; 
+            req.session.role = usuarioEncontrado.role;// Almacenar la sede en la sesión
             // Redirigir a index.html con el nombre de usuario y sede como parámetros de consulta
-            res.redirect(`/index.html?username=${encodeURIComponent(usuarioEncontrado.username)}&sede=${encodeURIComponent(usuarioEncontrado.sede)}`); 
+            res.redirect(`/index.html?username=${encodeURIComponent(usuarioEncontrado.username)}&sede=${encodeURIComponent(usuarioEncontrado.sede)}&role=${encodeURIComponent(usuarioEncontrado.role)}`); 
         } else {
             // Redirigir de vuelta a login.html con un mensaje de error en la URL
             res.redirect('/login.html?error=true');
@@ -182,32 +179,52 @@ app.get('/api/obtener-cantidad-pendiente', (req, res) => {
 
 //---------------------------------------------------------------------------------------------------------------------------------------
 app.post('/actualizar-cantidad', (req, res) => {
-    const { cantidadentregada, numerofactura, medicamento, username} = req.body;
+    const { cantidadentregada, numerofactura, medicamento, username } = req.body;
+    
     // Validación de los datos recibidos
     if (!cantidadentregada || !numerofactura || !medicamento) {
         return res.status(400).json({ message: 'Faltan datos requeridos' });
     }
+
     const fechaActual = new Date(); // Obtener la fecha actual
+
     // Lógica para buscar en la base de datos según numerofactura y medicamento
     const query = 'SELECT * FROM pendientes WHERE numerofactura = ? AND medicamento = ?';
     const values = [numerofactura, medicamento];
+
     req.db.query(query, values, (error, results) => {
         if (error) {
             console.error(error);
             return res.status(500).json({ message: 'Error al consultar la base de datos' });
         }
+
         // Si no se encuentra el registro
         if (results.length === 0) {
             return res.status(404).json({ message: 'Registro no encontrado' });
         }
+
         const registro = results[0];
+        let totalEntregas = 0;
+
+        // Comprobar cuántas entregas ya existen en el registro
+        for (let i = 1; i <= 6; i++) {
+            if (registro[`cantidadentregada${i}`]) {
+                totalEntregas++;
+            }
+        }
+
+        // Verificar si ya hay 6 entregas y si se intenta hacer la séptima
+        if (totalEntregas >= 6) {
+            return res.status(400).json({ message: 'Se han alcanzado el máximo de 6 entregas. No se pueden agregar más.' });
+        }
+
         // Actualiza la cantidad entregada y la fecha en la tabla
-        for (let i = 1; i <= 10; i++) {
+        for (let i = 1; i <= 6; i++) {
             // Comprobar si la cantidad entregada está vacía
             if (!registro[`cantidadentregada${i}`]) {
                 registro[`cantidadentregada${i}`] = cantidadentregada; // Establecer nueva cantidad
                 registro[`fechaentrega${i}`] = fechaActual; // Establecer la fecha actual
-                registro[`entrega${i}`] = username; // Establecer la fecha actual
+                registro[`entrega${i}`] = username; // Establecer el usuario que realizó la entrega
                 break;
             }
         }
@@ -226,6 +243,9 @@ app.post('/actualizar-cantidad', (req, res) => {
 
 // Ruta para generar y descargar el reporte en formato Excel
 app.get('/generar-reporte', (req, res) => {
+    if (req.session.role !== 'admin') {
+        return res.status(403).json({ error: 'Acceso denegado. Solo los administradores pueden generar reportes.' });
+    }
     // Consulta SQL para obtener todos los datos de la tabla pendientes
     const query = 'SELECT * FROM pendientes';
 
@@ -276,18 +296,6 @@ app.get('/generar-reporte', (req, res) => {
             { header: 'cantidadentregada6', key: 'cantidadentregada6', width: 20 },
             { header: 'fechaentrega6', key: 'fechaentrega6', width: 20 },
             { header: 'entrega6', key: 'entrega6', width: 20 },
-            { header: 'cantidadentregada7', key: 'cantidadentregada7', width: 20 },
-            { header: 'fechaentrega7', key: 'fechaentrega7', width: 20 },
-            { header: 'entrega7', key: 'entrega7', width: 20 },
-            { header: 'cantidadentregada8', key: 'cantidadentregada8', width: 20 },
-            { header: 'fechaentrega8', key: 'fechaentrega8', width: 20 },
-            { header: 'entrega8', key: 'entrega8', width: 20 },
-            { header: 'cantidadentregada9', key: 'cantidadentregada9', width: 20 },
-            { header: 'fechaentrega9', key: 'fechaentrega9', width: 20 },
-            { header: 'entrega9', key: 'entrega9', width: 20 },
-            { header: 'cantidadentregada10', key: 'cantidadentregada10', width: 20 },
-            { header: 'fechaentrega10', key: 'fechaentrega10', width: 20 },
-            { header: 'entrega10', key: 'entrega10', width: 20 },
             { header: 'cantidadpendientefinal', key: 'cantidadpendientefinal', width: 25 },
             { header: 'tipoentrega', key: 'tipoentrega', width: 15 },
             { header: 'sedependiente', key: 'sedependiente', width: 15 },

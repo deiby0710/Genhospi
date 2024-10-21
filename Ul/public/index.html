@@ -39,7 +39,7 @@
                         <tbody>
                             <tr>
                                 <td><input type="date" id="fecha_solicitud" class="form-control"></td>
-                                <td><input type="number" class="form-control identificacion" required></td>
+                                <td><input type="text" class="form-control identificacion" required></td>
                                 <td><input type="text" class="form-control form-id" required></td>
                                 <td><input type="text" id="nombrePaciente" class="form-control form-paciente" required></td>
                                 <td><input type="text" id="celular1" class="form-control form-telefono" required></td>
@@ -134,7 +134,7 @@
                             <tr>
                                 <td>
                                     <input class="form-control form-prod" type="text" id="medicamento" placeholder="Escribe un medicamento..." list="medicamentos-list" autocomplete="off">
-                                    <datalist id="medicamentos-list"></datalist>
+                                    <ul id="medicamentos-list" class="med-list"></ul>
                                 </td>
                                 <td><input type="text" id="codigo_producto"class="form-control"></td>
                                 <td><input type="text" id="laboratorio" class="form-control"></td>
@@ -263,7 +263,7 @@
                         </thead>
                         <tbody>
                             <tr>
-                                <td><input type="number" class="form-control" id="Aidentificacion" required></td>
+                                <td><input type="text" class="form-control" id="Aidentificacion" required></td>
                                 <td>
                                     <select id="AtipoIdentificacion" name="tipoIdentificacion" class="form-control form-inline-input" required>
                                         <option value="CC">CC</option>
@@ -330,6 +330,10 @@
     const username = urlParams.get('username') || 'Invitado';
     const sede = urlParams.get('sede') || 'Desconocida';
 
+    if (username == 'Invitado'){
+        window.location.href = '/login.html';
+    }
+
     // Mostrar el mensaje de bienvenida
     document.getElementById('username').setAttribute('registradopor',username);
     document.getElementById('username').innerText = `¡Bienvenido ${username} de la sede ${sede}!`;
@@ -371,30 +375,36 @@
         const nombreDiagnosticoInput = document.querySelector('.form-nombre-diagnostico');  
 
         identificacionInput.addEventListener('blur', () => {
-            const numeroIdentificacion = identificacionInput.value.trim();
-            if (numeroIdentificacion) {
-                fetch(`/api/paciente?numeroIdentificacion=${numeroIdentificacion}`)
-                    .then(response => {
-                        if (!response.ok) {
-                            throw new Error('Paciente no encontrado');
-                        }
-                        return response.json();
-                    })
-                    .then(data => {
-                        tipoIdInput.value = data.tipoIdentificacion || '';
-                        pacienteInput.value = data.primerNombre || '';
-                        celularInput.value = data.telefono || '';
-                        eps.value = data.eps || '';
-                    })
-                    .catch(error => {
-                        console.error('Error:', error);
-                        tipoIdInput.value = '';
-                        pacienteInput.value = '';
-                        celularInput.value = '';
-                        eps.value = data.eps || '';
-                    });
-            }
-        });
+    const numeroIdentificacion = identificacionInput.value.trim();
+    if (numeroIdentificacion) {
+        fetch(`/api/paciente?numeroIdentificacion=${numeroIdentificacion}`)
+            .then(response => {
+                if (!response.ok) {
+                    throw new Error('Paciente no encontrado');
+                }
+                return response.json();
+            })
+            .then(data => {
+                tipoIdInput.value = data.tipoIdentificacion || '';
+                pacienteInput.value = data.primerNombre || '';
+                celularInput.value = data.telefono || '';
+                eps.value = data.eps || '';
+            })
+            .catch(error => {
+                console.error('Error:', error);
+                
+                // Muestra un alert con el mensaje de error
+                alert('Paciente no encontrado, registrar en Agregar Paciente');
+
+                // Limpia los campos del formulario
+                identificacionInput.value = '';
+                tipoIdInput.value = '';
+                pacienteInput.value = '';
+                celularInput.value = '';
+                eps.value = '';
+            });
+    }
+});
 
         diagnosticoInput.addEventListener('blur', () => {
         const idDiagnostico = diagnosticoInput.value.trim();
@@ -418,73 +428,75 @@
 });
 
 
-    document.getElementById('medicamento').addEventListener('input', function() {
-    const query = this.value;
+document.getElementById('medicamento').addEventListener('input', function() {
+    const query = this.value.toLowerCase(); // Convertir a minúsculas para una comparación más flexible
     if (query.length > 1) {
         fetch(`/api/medicamentos`)
         .then(response => response.json())
         .then(data => {
-            const datalist = document.getElementById('medicamentos-list');
-            datalist.innerHTML = ''; // Limpiar la lista actual
+            const list = document.getElementById('medicamentos-list');
+            list.innerHTML = ''; // Limpiar la lista actual
 
-            // Limpiar los datos anteriores almacenados
-            let selectedMedicamento = null;
+            // Filtrar medicamentos que contengan el texto ingresado
+            const filteredMedicamentos = data.filter(medicamento => 
+                medicamento.nombre.toLowerCase().includes(query)
+            );
 
-            data.forEach(medicamento => {
-                const option = document.createElement('option');
-                option.value = medicamento.nombre; // El nombre del medicamento es lo que se mostrará
-                option.dataset.id = medicamento.codigo; // Usa el código como ID para la selección
-                option.dataset.laboratorio = medicamento.laboratorio; 
-                option.dataset.valorunitario = medicamento.valorunitario; 
-                option.dataset.tipoproducto = medicamento.tipoproducto; 
-                option.dataset.cobertura = medicamento.cobertura; 
-                option.dataset.cum = medicamento.cum; 
-                datalist.appendChild(option);
+            // Crear los elementos de la lista (li) solo con los medicamentos que coincidan
+            filteredMedicamentos.forEach(medicamento => {
+                const listItem = document.createElement('li');
+                listItem.textContent = medicamento.nombre; // Nombre del medicamento
+                listItem.dataset.id = medicamento.codigo; // Código del medicamento
+                listItem.dataset.laboratorio = medicamento.laboratorio; 
+                listItem.dataset.valorunitario = medicamento.valorunitario; 
+                listItem.dataset.tipoproducto = medicamento.tipoproducto; 
+                listItem.dataset.cobertura = medicamento.cobertura; 
+                listItem.dataset.cum = medicamento.cum; 
+
+                // Al hacer clic en un elemento de la lista, seleccionamos el medicamento
+                listItem.addEventListener('click', function() {
+                    // Llenamos el campo de búsqueda con el nombre seleccionado
+                    document.getElementById('medicamento').value = listItem.textContent;
+
+                    // Llenar otros campos del formulario con los datos del medicamento seleccionado
+                    document.getElementById('codigo_producto').value = medicamento.codigo;
+                    document.getElementById('laboratorio').value = medicamento.laboratorio; 
+                    document.getElementById('tipo_producto').value = medicamento.tipoproducto; 
+                    document.getElementById('cobertura').value = medicamento.cobertura; 
+                    document.getElementById('cum').value = medicamento.cum;
+
+                    // Limpiar la lista una vez seleccionado el medicamento
+                    list.innerHTML = '';
+                });
+
+                list.appendChild(listItem); // Añadir el elemento a la lista
             });
-            // Agregar un evento para cuando el usuario selecciona una opción
-            document.getElementById('medicamento').addEventListener('change', function() {
-                // Aquí accedemos a la opción seleccionada en el datalist
-                const selectedOption = document.querySelector('#medicamentos-list option[value="' + this.value + '"]');
-                if (selectedOption) {
-                    console.log('Opción seleccionada:', selectedOption);
 
-                    // Aquí obtenemos el código del medicamento seleccionado
-                    const codigo = selectedOption.dataset.id; // Asegúrate de que este es el ID correcto
-
-                    // Buscamos el medicamento seleccionado en la respuesta original usando el código
-                    const selectedMedicamento = data.find(med => med.codigo == codigo);
-
-                    if (selectedMedicamento) {
-                        console.log('Medicamento seleccionado:', selectedMedicamento);
-
-                        // Llenar otros campos del formulario con los datos del medicamento seleccionado
-                        document.getElementById('codigo_producto').value = selectedMedicamento.codigo;
-                        document.getElementById('laboratorio').value = selectedMedicamento.laboratorio; 
-                        document.getElementById('tipo_producto').value = selectedMedicamento.tipoproducto; 
-                        document.getElementById('cobertura').value = selectedMedicamento.cobertura; 
-                        document.getElementById('cum').value = selectedMedicamento.cum; 
-                    }
-                } else {
-                    console.log('No se encontró la opción seleccionada.');
-                }
-            });
+            // Si no hay resultados, mostrar un mensaje
+            if (filteredMedicamentos.length === 0) {
+                const noResult = document.createElement('li');
+                noResult.textContent = 'No se encontraron medicamentos.';
+                list.appendChild(noResult);
+            }
         })
         .catch(error => console.error('Error:', error));
+    } else {
+        document.getElementById('medicamentos-list').innerHTML = ''; // Limpiar la lista si el input tiene menos de 2 caracteres
     }
 });
 
+
 document.getElementById('btn_cantidad_pendiente').addEventListener('click', function() {
-    // Datos ficticios para la fila (pueden venir de un formulario o base de datos)
+    // Obtener los valores de los campos
     const codigo = document.getElementById('codigo_producto').value;
     const producto = document.getElementById('medicamento').value;
     const laboratorio = document.getElementById('laboratorio').value;
     const cantidadPendiente = document.getElementById('cantidad_pendiente').value;
-
+    const numeroFormula = document.getElementById('numeroFormula').value;
     const fechaRegistro = document.querySelector('input[type="date"]').value;
     const identificacion = document.querySelector('.identificacion').value;
     const tipoIdentificacion = document.querySelector('.form-id').value;
     const nombre = document.querySelector('.form-paciente').value;
-
     const tipoProducto = document.getElementById('tipo_producto').value;
     const cobertura = document.getElementById('cobertura').value;
     const cantidadPrescrita = document.getElementById('cantidad_prescrita').value;
@@ -494,10 +506,35 @@ document.getElementById('btn_cantidad_pendiente').addEventListener('click', func
     const cum = document.getElementById('cum').value;
     const observacion = document.getElementById('observacion').value;
     const fechaFormula = document.getElementById('fechaFormula').value;
+    const codigoDiagnositco = document.getElementById('codigoDiagnostico').value;
+    const nombreDiagnostico = document.getElementById('nombreDiagnostico').value;
+    const direccion = document.getElementById('direccion').value;
 
 
-    if (!codigo || !producto || !laboratorio || !cantidadPendiente || !fechaRegistro  || !identificacion || !tipoProducto || !cantidadPrescrita || !tipoEntrega || !sedePendiente || !estadoDispensacion || !fechaFormula) {
-        alert('Por favor completa los campos obligatorios');
+    // Array para almacenar los mensajes de error
+    let missingFields = [];
+
+    // Verificar qué campos están vacíos
+    if (!codigo) missingFields.push('Código del producto');
+    if (!producto) missingFields.push('Medicamento');
+    if (!numeroFormula) missingFields.push('Número de fórmula');
+    if (!laboratorio) missingFields.push('Laboratorio');
+    if (!cantidadPendiente) missingFields.push('Cantidad pendiente');
+    if (!fechaRegistro) missingFields.push('Fecha de registro');
+    if (!identificacion) missingFields.push('Identificación');
+    if (!tipoProducto) missingFields.push('Tipo de producto');
+    if (!cantidadPrescrita) missingFields.push('Cantidad prescrita');
+    if (!tipoEntrega) missingFields.push('Tipo de entrega');
+    if (!sedePendiente) missingFields.push('Sede pendiente');
+    if (!estadoDispensacion) missingFields.push('Estado de dispensación');
+    if (!fechaFormula) missingFields.push('Fecha de fórmula');
+    if (!codigoDiagnositco) missingFields.push('Codigo diagnóstico');
+    if (!nombreDiagnostico) missingFields.push('Nombre diagnóstico');
+    if (!direccion) missingFields.push('Dirección');
+
+    // Si hay campos faltantes, mostrar un mensaje
+    if (missingFields.length > 0) {
+        alert('Por favor completa los siguientes campos obligatorios:\n- ' + missingFields.join('\n- '));
         return;
     }
 
@@ -1063,6 +1100,7 @@ function calcularPendienteFinal(index, id) {
 
 
 function generarReporte() {
+    
             // Realiza la solicitud al servidor para generar el reporte
             fetch('/generar-reporte')
                 .then(response => {
@@ -1103,5 +1141,15 @@ function generarReporte() {
             console.error('Error al cerrar sesión:', error);
         });
     });
+
+      // Obtener el rol del usuario desde la URL
+      const params = new URLSearchParams(window.location.search);
+    const role = params.get('role');
+
+    // Ocultar el botón de generar reporte si el usuario no es administrador
+    if (role !== 'admin') {
+        document.getElementById('generar-reporte').style.display = 'none';
+    }
+     
 
 </script>
