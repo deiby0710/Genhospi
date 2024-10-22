@@ -4,716 +4,1250 @@
         "cedula": "1094937810",
         "username": "ANDREATACAN",
         "password": "A1094937810",
-        "sede": "VERSALLES"
+        "sede": "VERSALLES",
+        "role": "admin"
      },
     {
         "nombrecompleto": "MAYERLIN AGUILAR  MERA",
         "cedula": "1005872554",
         "username": "MAYERLINMERA",
         "password": "M1005872554",
-        "sede": "MORICHAL"
+        "sede": "MORICHAL",
+        "role": "user"
      },
     {
         "nombrecompleto": "DIANA MARCELA ROJAS MORENO ",
         "cedula": "1116434507",
         "username": "DIANAROJAS",
         "password": "D1116434507",
-        "sede": "VERSALLES"
+        "sede": "VERSALLES",
+        "role": "user"
      },
     {
         "nombrecompleto": "ENOTH MILENA OMEN OMEN",
         "cedula": "1061988792",
         "username": "ENOTHOMEN",
         "password": "E1061988792",
-        "sede": "MORICHAL"
+        "sede": "MORICHAL",
+        "role": "user"
      },
     {
         "nombrecompleto": "MARIA JOSE CAICEDO VASQUEZ ",
         "cedula": "1143869522",
         "username": "MARIACAICEDO",
         "password": "M1143869522",
-        "sede": "MORICHAL"
+        "sede": "MORICHAL",
+        "role": "user"
      },
     {
         "nombrecompleto": "MARIA ALFANIA CARABALI VIVEROS ",
         "cedula": "1130613759",
         "username": "MARIACARABALI",
         "password": "M1130613759",
-        "sede": "MORICHAL"
+        "sede": "MORICHAL",
+        "role": "user"
     },
         {
         "nombrecompleto": "SANDRA MILENA GONZALEZ CORREA",
         "cedula": "1143865689",
         "username": "SANDRAGONZALEZ",
         "password": "S1143865689",
-        "sede": "MORICHAL"
+        "sede": "MORICHAL",
+        "role": "user"
     },
     {
         "nombrecompleto": "ERICA YULIETH YATACUE CALDERON ",
         "cedula": "1143977309",
         "username": "ERICAYATACUE",
         "password": "E1143977309",
-        "sede": "VERSALLES"
+        "sede": "VERSALLES",
+        "role": "user"
     },
         {
         "nombrecompleto": "ROCIO OSORIO MORALES ",
         "cedula": "1130626710",
         "username": "ROCIOOSORIO",
                     "password": "R1130626710",
-                    "sede": "PRADO"
+                    "sede": "PRADO",
+                    "role": "admin"
             },
         {
         "nombrecompleto": "CRISTHIAN STEVEN BONILLA PALOMINO ",
         "cedula": "14637868",
         "username": "CRISTHIANBONILLA",
                     "password": "C14637868",
-                    "sede": "MORICHAL"
+                    "sede": "MORICHAL",
+                    "role": "user"
             },
         {
         "nombrecompleto": "ESTEFANIA GARCIA GUAZA",
         "cedula": "1151943793",
         "username": "ESTEFANIAGARCIA",
                     "password": "E1151943793",
-                    "sede": "MORICHAL"
+                    "sede": "MORICHAL",
+                    "role": "user"
             },
         {
         "nombrecompleto": "VIVIANA ANDREA BETANCOURT AGUDELO ",
         "cedula": "1130677993",
         "username": "VIVIANABETANCOURT",
                     "password": "V1130677993",
-                    "sede": "VERSALLES"
+                    "sede": "VERSALLES",
+                    "role": "user"
             },
         {
         "nombrecompleto": "NELLY DAYANA ORTIZ MADROÑERO ",
         "cedula": "1004635470",
         "username": "NELLYORTIZ",
                     "password": "N1004635470",
-                    "sede": "MORICHAL"
+                    "sede": "MORICHAL",
+                    "role": "user"
             },
         {
         "nombrecompleto": "CINDY MARCELA DORADO MUÑOZ",
         "cedula": "1144032122",
         "username": "CINDYDORADO",
                     "password": "C1144032122",
-                    "sede": "PRADO"
+                    "sede": "PRADO",
+                    "role": "user"
             },
         {
         "nombrecompleto": "DANY FERNEY MENESES PEREZ",
         "cedula": "14838609",
         "username": "DANYMENESES",
                     "password": "D14838609",
-                    "sede": "MORICHAL"
+                    "sede": "MORICHAL",
+                    "role": "admin"
             },
         {
         "nombrecompleto": "KATALINA MARO­N GOMEZ",
         "cedula": "1109542437",
         "username": "KATALINAMARON",
                     "password": "K1109542437",
-                    "sede": "PRADO"
+                    "sede": "PRADO",
+                    "role": "user"
             },
         {
         "nombrecompleto": "EDUAR FABIAN JIMENEZ AGUIIRRE",
         "cedula": "16939120",
         "username": "EDUARJIMENEZ",
                     "password": "E16939120",
-                    "sede": "PRADO"
+                    "sede": "PRADO",
+                    "role": "user"
             },
         {
         "nombrecompleto": "KATHERINE LICETH FLOREZ ",
         "cedula": "29352810",
         "username": "KATHERINEFLOREZ",
                     "password": "K29352810",
-                    "sede": "TEQUENDAMA"
+                    "sede": "TEQUENDAMA",
+                    "role": "user"
             },
         {
         "nombrecompleto": "MONICA CRUZ",
         "cedula": "1143940907",
         "username": "MONICACRUZ",
                     "password": "M1143940907",
-                    "sede": "TEQUENDAMA"
+                    "sede": "TEQUENDAMA",
+                    "role": "user"
             },
         {
         "nombrecompleto": "DIANA OCAMPO GUZMAN ",
         "cedula": "38665722",
         "username": "DIANAGUZMAN",
                     "password": "D38665722",
-                    "sede": "TEQUENDAMA"
+                    "sede": "TEQUENDAMA",
+                    "role": "user"
             },
         {
         "nombrecompleto": "LIGIA YADIRA CASTILLO CASTILLO ",
         "cedula": "1082693665",
         "username": "LIGIACASTILLO",
                     "password": "L1082693665",
-                    "sede": "PRADO"
+                    "sede": "PRADO",
+                    "role": "user"
             },
         {
         "nombrecompleto": "ELIZABETH CORREA RUIZ ",
         "cedula": "1143963409",
         "username": "ELIZABETHCORREA",
                     "password": "E1143963409",
-                    "sede": "TEQUENDAMA"
+                    "sede": "TEQUENDAMA",
+                    "role": "user"
             }, 
         {
         "nombrecompleto": "ESTEFANY MORENO CASTRO",
         "cedula": "1006193509",
         "username": "ESTEFANYMORENO",
                     "password": "E1006193509",
-                    "sede": "TEQUENDAMA"
+                    "sede": "TEQUENDAMA",
+                    "role": "user"
             }, 
         {
         "nombrecompleto": "ALVARO SALCEDO G",
         "cedula": "10559375",
         "username": "ALVAROSALCEDO",
                     "password": "A10559375",
-                    "sede": "TEQUENDAMA"
+                    "sede": "TEQUENDAMA",
+                    "role": "user"
             }, 
         {
         "nombrecompleto": "JHOAN ANDRES MEJIA SALAZAR ",
         "cedula": "1130679985",
         "username": "JHOANMEJIA",
                     "password": "J1130679985",
-                    "sede": "TEQUENDAMA"
+                    "sede": "TEQUENDAMA",
+                    "role": "user"
             }, 
         {
         "nombrecompleto": "KAREN REBECA JARAMILLO ROSERO ",
         "cedula": "1111818991",
         "username": "KARENJARAMILLO",
                     "password": "K1111818991",
-                    "sede": "VERSALLES"
+                    "sede": "VERSALLES",
+                    "role": "user"
             }, 
         {
         "nombrecompleto": "YURANY HURTADO VELASCO ",
         "cedula": "1060866433",
         "username": "YURANYHURTADO",
                     "password": "Y1060866433",
-                    "sede": "TEQUENDAMA"
+                    "sede": "TEQUENDAMA",
+                    "role": "user"
             }, 
         {
         "nombrecompleto": "KAREN DAYANA LEON CALDERON ",
         "cedula": "1007619810",
         "username": "KARENLEON",
                     "password": "K1007619810",
-                    "sede": "VERSALLES"
+                    "sede": "VERSALLES",
+                    "role": "user"
             }, 
         {
         "nombrecompleto": "DANNA CORTES",
         "cedula": "1105362521",
         "username": "DANNACORTES",
                     "password": "D1105362521",
-                    "sede": "VERSALLES"
+                    "sede": "VERSALLES",
+                    "role": "user"
             }, 
         {
         "nombrecompleto": "MARIA ALEJANDRA SANCHEZ CASAÑAS ",
         "cedula": "1005325401",
         "username": "MARIASANCHEZ",
                     "password": "M1005325401",
-                    "sede": "TEQUENDAMA"
+                    "sede": "TEQUENDAMA",
+                    "role": "user"
             }, 
         {
         "nombrecompleto": "DANIELA ALEJANDRA RUIZ CHAMORRO ",
         "cedula": "1143988816",
         "username": "DANIELARUIZ",
                     "password": "D1143988816",
-                    "sede": "PRADO"
+                    "sede": "PRADO",
+                    "role": "user"
             }, 
         {
         "nombrecompleto": "ZULINDA MONTAÑO ",
         "cedula": "1086050255",
         "username": "ZULINDAMONTANO",
                     "password": "Z1086050255",
-                    "sede": "PRADO"
+                    "sede": "PRADO",
+                    "role": "user"
             }, 
         {
         "nombrecompleto": "ESTEFANIA ARDILA ACOSTA",
         "cedula": "1152457349",
         "username": "ESTEFANIARDILA",
                     "password": "E1152457349",
-                    "sede": "PRADO"
+                    "sede": "PRADO",
+                    "role": "user"
             }, 
         {
         "nombrecompleto": "YIVER DIOMEDES GAVIRIA GAVIRIA ",
         "cedula": "1058976595",
         "username": "YIVERGAVIRIA",
                     "password": "Y1058976595",
-                    "sede": "PRADO"
+                    "sede": "PRADO",
+                    "role": "user"
             }, 
         {
         "nombrecompleto": "GISELA FLOR SOLARTE",
         "cedula": "1144072734",
         "username": "GISELASOLARTE",
                     "password": "G1144072734",
-                    "sede": "TEQUENDAMA"
+                    "sede": "TEQUENDAMA",
+                    "role": "user"
             }, 
         {
         "nombrecompleto": "XIOMARA VALENCIA CASTRO ",
         "cedula": "1193033073",
         "username": "XIOMARAVALENCIA",
                     "password": "X1193033073",
-                    "sede": "TEQUENDAMA"
+                    "sede": "TEQUENDAMA",
+                    "role": "user"
             }, 
         {
         "nombrecompleto": "ANGELA LORENA BRAVO",
         "cedula": "27282170",
         "username": "ANGELABRAVO",
                     "password": "A27282170",
-                    "sede": "LA CRUZ"
+                    "sede": "LA CRUZ",
+                    "role": "admin"
             }, 
         {
         "nombrecompleto": "LINA JULIETH CORDOBA MARTINEZ ",
         "cedula": "1086140464",
         "username": "LINACORDOBA",
                     "password": "L1086140464",
-                    "sede": "SANDONA"
+                    "sede": "SANDONA",
+                    "role": "admin"
             }, 
         {
         "nombrecompleto": "PAOLA ANDREA CHAUCANES MARTINEZ ",
         "cedula": "1087419234",
         "username": "PAOLACHAUCANES",
                     "password": "P1087419234",
-                    "sede": "TUQUERRES"
+                    "sede": "TUQUERRES",
+                    "role": "user"
             }, 
         {
         "nombrecompleto": "EMILSE GUERRERO SANTACRUZ ",
         "cedula": "27109436",
         "username": "EMILSEGUERRERO",
                     "password": "E27109436",
-                    "sede": "ANCUYA"
+                    "sede": "ANCUYA",
+                    "role": "admin"
             }, 
         {
         "nombrecompleto": "YURI NATALIA ERAZO CASTILLO ",
         "cedula": "1086926176",
         "username": "YURIERAZO",
                     "password": "Y1086926176",
-                    "sede": "IPS PANDIACO"
+                    "sede": "IPS PANDIACO",
+                    "role": "admin"
             }, 
         {
         "nombrecompleto": "ERIKA ANDREA OJEDA MORENO ",
         "cedula": "59177053",
         "username": "ERIKAOJEDA",
                     "password": "E59177053",
-                    "sede": "SANDONA"
+                    "sede": "SANDONA",
+                    "role": "user"
             }, 
         {
         "nombrecompleto": "LORENA DEL CARMEN ROSERO ALVAREZ ",
         "cedula": "59652766",
         "username": "LORENAROSERO",
                     "password": "L59652766",
-                    "sede": "TUQUERRES"
+                    "sede": "TUQUERRES",
+                    "role": "admin"
             }, 
         {
         "nombrecompleto": "KARINA CAIPE ",
         "cedula": "1089289951",
         "username": "KARINACAIPE",
                     "password": "K1089289951",
-                    "sede": "MALLAMA/PIEDRANCHA"
+                    "sede": "MALLAMA/PIEDRANCHA",
+                    "role": "admin"
             }, 
         {
         "nombrecompleto": "YELITZA VIVIANA EGAS DIAZ ",
         "cedula": "27110206",
         "username": "YELITZAEGAS",
                     "password": "Y27110206",
-                    "sede": "ANCUYA"
+                    "sede": "ANCUYA",
+                    "role": "user"
             }, 
         {
         "nombrecompleto": "JOHANA FERNANDA BRAVO GUERRERO ",
         "cedula": "1086139389",
         "username": "JOHANABRAVO",
                     "password": "J1086139389",
-                    "sede": "SANDONA"
+                    "sede": "SANDONA",
+                    "role": "user"
             }, 
         {
         "nombrecompleto": "LINA  MARIA ORTEGA  PEÑAFIEL ",
         "cedula": "1086140398",
         "username": "LINAORTEGA",
                     "password": "L1086140398",
-                    "sede": "SANDONA"
+                    "sede": "SANDONA",
+                    "role": "user"
             }, 
         {
         "nombrecompleto": "LEYDI VIVIANA CASTRO ",
         "cedula": "1082657832",
         "username": "LEYDICASTRO",
                     "password": "L1082657832",
-                    "sede": "ANCUYA"
+                    "sede": "ANCUYA",
+                    "role": "user"
             }, 
         {
         "nombrecompleto": "LORENA ELIZABETH CALDERON DIAZ ",
         "cedula": "1087412156",
         "username": "LORENACALDERON",
                     "password": "L1087412156",
-                    "sede": "TUQUERRES"
+                    "sede": "TUQUERRES",
+                    "role": "user"
             }, 
         {
         "nombrecompleto": "MARYORI BRIYITH POTOSI BOLAÑOS ",
         "cedula": "1007310912",
         "username": "MARYORIPOTOSI",
                     "password": "M1007310912",
-                    "sede": "LA CRUZ"
+                    "sede": "LA CRUZ",
+                    "role": "user"
             }, 
         {
         "nombrecompleto": "MARICELA MOLINA URBANO ",
         "cedula": "27277777",
         "username": "MARICELAMOLINA",
                     "password": "M27277777",
-                    "sede": "LA CRUZ"
+                    "sede": "LA CRUZ",
+                    "role": "user"
             }, 
         {
         "nombrecompleto": "DIANA CAROLINA SUAREZ NASMUTA ",
         "cedula": "1086500262",
         "username": "DIANASUAREZ",
                     "password": "D1086500262",
-                    "sede": "TUQUERRES"
+                    "sede": "TUQUERRES",
+                    "role": "user"
             }, 
         {
         "nombrecompleto": "LEIDY KARINA ESTRADA MUÑOZ",
         "cedula": "27282467",
         "username": "LEIDYESTRADA",
                     "password": "L27282467",
-                    "sede": "LA CRUZ"
+                    "sede": "LA CRUZ",
+                    "role": "user"
             }, 
         {
         "nombrecompleto": "KAREN DANIELA ROSERO TULCAN ",
         "cedula": "1193469608",
         "username": "KARENROSERO",
                     "password": "K1193469608",
-                    "sede": "SAN IGNACIO"
+                    "sede": "SAN IGNACIO",
+                    "role": "user"
             }, 
         {
         "nombrecompleto": "YULIETH YOBANA OLIVA BENAVIDES ",
         "cedula": "1085899190",
         "username": "YULIETHOLIVA",
                     "password": "Y1085899190",
-                    "sede": "TUQUERRES"
+                    "sede": "TUQUERRES",
+                    "role": "user"
             }, 
         {
         "nombrecompleto": "BERTHA ALEXANDRA GELPUD MEZA",
         "cedula": "1007301577",
         "username": "BERTHAGELPUD",
                     "password": "B1007301577",
-                    "sede": "SAN IGNACIO"
+                    "sede": "SAN IGNACIO",
+                    "role": "user"
             }, 
         {
         "nombrecompleto": "CHARLOTHE HERNANDEZ RODRIGUEZ ",
         "cedula": "1087048969",
         "username": "CHARLOTHHERNANDEZ",
                     "password": "C1087048969",
-                    "sede": "SAN IGNACIO"
+                    "sede": "SAN IGNACIO",
+                    "role": "user"
             }, 
         {
         "nombrecompleto": "INGRID ALEJANDRA ERAZO ZAMBRANO ",
         "cedula": "1085330511",
         "username": "INGRIDERAZO",
                     "password": "I1085330511",
-                    "sede": "SAN IGNACIO"
+                    "sede": "SAN IGNACIO",
+                    "role": "user"
             }, 
         {
         "nombrecompleto": "YOANA CATERINE IPIALES MATABANCHOY ",
         "cedula": "1080690183",
         "username": "YOANAIPIALES",
                     "password": "Y1080690183",
-                    "sede": "SAN IGNACIO"
+                    "sede": "SAN IGNACIO",
+                    "role": "user"
             }, 
         {
         "nombrecompleto": "PAOLA ANDREA MATASEA DAVID ",
         "cedula": "1088736340",
         "username": "PAOLAMATASEA",
                     "password": "P1088736340",
-                    "sede": "SAMANIEGO"
+                    "sede": "SAMANIEGO",
+                    "role": "admin"
             }, 
         {
         "nombrecompleto": "MARLELLY VANESSA ENRIQUEZ DORADO",
         "cedula": "1085312027",
         "username": "MARLELLYENRIQUEZ",
                     "password": "M1085312027",
-                    "sede": "SAN IGNACIO"
+                    "sede": "SAN IGNACIO",
+                    "role": "user"
             }, 
         {
         "nombrecompleto": "JOHANNA MILENA DIAZ MARTINEZ ",
         "cedula": "1088736657",
         "username": "JOHANNADIAZ",
                     "password": "J1088736657",
-                    "sede": "SAMANIEGO"
+                    "sede": "SAMANIEGO",
+                    "role": "user"
             }, 
         {
         "nombrecompleto": "DANIXA TATIANA PORTILLA ZAMBRANO ",
         "cedula": "1004136439",
         "username": "DANIXAPORTILLA",
                     "password": "D1004136439",
-                    "sede": "SAN IGNACIO"
+                    "sede": "SAN IGNACIO",
+                    "role": "user"
             }, 
         {
         "nombrecompleto": "DIANA MILENA MEJIA CEPEDA",
         "cedula": "1085929460",
         "username": "DIANAMEJIA",
                     "password": "D1085929460",
-                    "sede": "IPIALES"
+                    "sede": "IPIALES",
+                    "role": "admin"
             }, 
         {
         "nombrecompleto": "YUBITH REVELO VELASQUEZ ",
         "cedula": "27381909",
         "username": "YUBITHREVELO",
                     "password": "Y27381909",
-                    "sede": "TUQUERRES"
+                    "sede": "TUQUERRES",
+                    "role": "user"
             }, 
         {
         "nombrecompleto": "LEIDY JOHANA ALVAREZ CHAVES ",
         "cedula": "1085342208",
         "username": "LEIDYALVAREZ",
                     "password": "L1085342208",
-                    "sede": "SAN IGNACIO"
+                    "sede": "SAN IGNACIO",
+                    "role": "user"
             }, 
         {
         "nombrecompleto": "ANA LUISA CUASTUMAL FUELANTALA ",
         "cedula": "1004691698",
         "username": "ANACUASTUMAL",
                     "password": "A1004691698",
-                    "sede": "IPIALES"
+                    "sede": "IPIALES",
+                    "role": "user"
             }, 
         {
         "nombrecompleto": "DAYRA MUÑOZ ROSERO ",
         "cedula": "1131085133",
         "username": "DAYRAMUNOZ",
                     "password": "D1131085133",
-                    "sede": "SAN IGNACIO"
+                    "sede": "SANITAS",
+                    "role": "user"
             }, 
         {
         "nombrecompleto": "PAOLA ANDREA HIDALGO GOMEZ",
         "cedula": "27286207",
         "username": "PAOLAHIDALGO",
                     "password": "P27286207",
-                    "sede": "SAN IGNACIO"
+                    "sede": "SAN IGNACIO",
+                    "role": "user"
             }, 
         {
         "nombrecompleto": "AMANDA FABIOLA TIMANA JOSA",
         "cedula": "1085294971",
         "username": "AMANDATIMANA",
                     "password": "A1085294971",
-                    "sede": "SAN IGNACIO"
+                    "sede": "SANITAS",
+                    "role": "user"
             }, 
         {
         "nombrecompleto": "MILEYDI YULIANA ACOSTA CABRERA ",
         "cedula": "1004535266",
         "username": "MILEYDIACOSTA",
                     "password": "M1004535266",
-                    "sede": "SAN IGNACIO"
+                    "sede": "SAN IGNACIO",
+                    "role": "admin"
             }, 
         {
         "nombrecompleto": "DIANA ALEJANDRA OJEDA HERNANDEZ ",
         "cedula": "1086755556",
         "username": "DIANAOJEDA",
                     "password": "D1086755556",
-                    "sede": "IPIALES"
+                    "sede": "IPIALES",
+                    "role": "user"
             }, 
         {
         "nombrecompleto": "JOHANNA ALICIA MONTENEGRO JIMENEZ",
         "cedula": "36757754",
         "username": "JOHANNAMONTENEGRO",
                     "password": "J36757754",
-                    "sede": "SAN IGNACIO"
+                    "sede": "SAN IGNACIO",
+                    "role": "user"
             }, 
         {
         "nombrecompleto": "BETTZY DAYANA RAMI­REZ NAZATE ",
         "cedula": "1085950582",
         "username": "BETTZYRAMIREZ",
                     "password": "B1085950582",
-                    "sede": "IPIALES"
+                    "sede": "IPIALES",
+                    "role": "user"
             }, 
         {
         "nombrecompleto": "MARIA ALEJANDRA NICHOY BOTINA ",
         "cedula": "1193031384",
         "username": "MARIANICHOY",
                     "password": "M1193031384",
-                    "sede": "IPS PANDIACO"
+                    "sede": "IPS PANDIACO",
+                    "role": "user"
             }, 
         {
         "nombrecompleto": "YULI MARCELA CARVAJAL JAIMES ",
         "cedula": "1085288040",
         "username": "YULICARVAJAL",
                     "password": "Y1085288040",
-                    "sede": "IPS PANDIACO"
+                    "sede": "IPS PANDIACO",
+                    "role": "user"
             }, 
         {
         "nombrecompleto": "WALTER ANDRES BOLAÑOS BENAVIDES ",
         "cedula": "1087408048",
         "username": "WALTERBOLANOS",
                     "password": "W1087408048",
-                    "sede": "SAN IGNACIO"
+                    "sede": "SAN IGNACIO",
+                    "role": "admin"
             }, 
         {
         "nombrecompleto": "YOULIN TATHYANA BENAVIDES ERASO ",
         "cedula": "1094914485",
         "username": "YOULINBENAVIDES",
                     "password": "Y1094914485",
-                    "sede": "SAN IGNACIO"
+                    "sede": "SAN IGNACIO",
+                    "role": "user"
             }, 
         {
         "nombrecompleto": "JENIFER NATALI PAZ RIVERA ",
         "cedula": "1007736508",
         "username": "JENIFERPAZ",
                     "password": "J1007736508",
-                    "sede": "TUQUERRES"
+                    "sede": "TUQUERRES",
+                    "role": "user"
             }, 
         {
         "nombrecompleto": "JOHANNA CATHERINE QUENORAN MEZA",
         "cedula": "1085296370",
         "username": "JOHANNAQUENORAN",
                     "password": "J1085296370",
-                    "sede": "SAN IGNACIO"
+                    "sede": "SAN IGNACIO",
+                    "role": "user"
             }, 
         {
         "nombrecompleto": "PAULA ANDREA ROJAS PRADO",
         "cedula": "1004131560",
         "username": "PAULAROJAS",
                     "password": "P1004131560",
-                    "sede": "MARIDIAZ"
+                    "sede": "PQRS",
+                    "role": "admin"
             }, 
         {
         "nombrecompleto": "DAYAN NIKOL ARENAS IBARRA ",
         "cedula": "1193056924",
         "username": "DAYANARENAS",
                     "password": "D1193056924",
-                    "sede": "MARIDIAZ"
+                    "sede": "MARIDIAZ",
+                    "role": "user"
             }, 
         {
         "nombrecompleto": "VALENTINA MOLINA RUIZ ",
         "cedula": "1010086290",
         "username": "VALENTINARUIZ",
                     "password": "V1010086290",
-                    "sede": "VERSALLES"
+                    "sede": "VERSALLES",
+                    "role": "user"
             }, 
         {
         "nombrecompleto": "NEISA PAOLA ORDOÑEZ ORDOÑEZ",
         "cedula": "1083813102",
         "username": "NEISAORDONEZ",
                     "password": "N1083813102",
-                    "sede": "IPS PANDIACO"
+                    "sede": "IPS PANDIACO",
+                    "role": "user"
             }, 
         {
         "nombrecompleto": "ELIECER HURTADO ",
         "cedula": "94384863",
         "username": "ELIECERHURTADO",
                     "password": "E94384863",
-                    "sede": "VERSALLES"
+                    "sede": "VERSALLES",
+                    "role": "admin"
             }, 
         {
         "nombrecompleto": "DANIELA FERNANDA RAMOS MOLINA",
         "cedula": "1007426020",
         "username": "DANIELARAMOS",
                     "password": "D1007426020",
-                    "sede": "VERSALLES"
+                    "sede": "VERSALLES",
+                    "role": "user"
             }, 
         {
         "nombrecompleto": "SANTIAGO YULE CRUZ ",
         "cedula": "1006054621",
         "username": "SANTIAGOCRUZ",
                     "password": "S1006054621",
-                    "sede": "VERSALLES"
+                    "sede": "VERSALLES",
+                    "role": "user"
             }, 
         {
         "nombrecompleto": "MILADY DIAZ HOYOS",
         "cedula": "1144525111",
         "username": "MILADYDIAZ",
                     "password": "M1144525111",
-                    "sede": "VERSALLES"
+                    "sede": "VERSALLES",
+                    "role": "user"
             }, 
         {
         "nombrecompleto": "MARIA FERNANDA NARVAEZ CARVAJAL ",
         "cedula": "1085248520",
         "username": "MARIANARVAEZ",
                     "password": "M1085248520",
-                    "sede": "MARIDIAZ"
+                    "sede": "MARIDIAZ",
+                    "role": "admin"
             }, 
         {
         "nombrecompleto": "JENNY MARICELA REVELO MONTENEGRO",
         "cedula": "1086499801",
         "username": "JENNYREVELO",
                     "password": "J1086499801",
-                    "sede": "SAN IGNACIO"
+                    "sede": "SAN IGNACIO",
+                    "role": "user"
             }, 
         {
         "nombrecompleto": "JUAN SEBASTIAN MONCALEANO ",
         "cedula": "1113653885",
         "username": "JUANMONCALEANO",
                     "password": "J1113653885",
-                    "sede": "VERSALLES"
+                    "sede": "VERSALLES",
+                    "role": "admin"
             }, 
         {
         "nombrecompleto": "MERILIN MALLERLY MONTENEGRO PANTOJA ",
         "cedula": "1004190940",
         "username": "MERILINMONTENEGRO",
                     "password": "M1004190940",
-                    "sede": "FATIMA"
+                    "sede": "FATIMA",
+                    "role": "user"
             }, 
         {
         "nombrecompleto": "ROBERT MEZA",
         "cedula": "1087406843",
         "username": "ROBERTMEZA",
                     "password": "R1087406843",
-                    "sede": "FATIMA"
+                    "sede": "FATIMA",
+                    "role": "user"
             }, 
         {
         "nombrecompleto": "MAYRA ALEJANDRA MORA TORO ",
         "cedula": "1233188461",
         "username": "MAYRAMORA",
                     "password": "M1233188461",
-                    "sede": "SAN IGNACIO"
+                    "sede": "SAN IGNACIO",
+                    "role": "user"
             }, 
         {
         "nombrecompleto": "PAOLA ANDREA CANTUCA LEON",
         "cedula": "1085272975",
         "username": "PAOLACANTUCA",
                     "password": "P1085272975",
-                    "sede": "FATIMA"
+                    "sede": "FATIMA",
+                    "role": "user"
             }, 
         {
         "nombrecompleto": "CARLOS DAVID NARVAEZ JURADO",
         "cedula": "1004216767",
         "username": "CARLOSNARVAEZ",
                     "password": "C1004216767",
-                    "sede": "SAN IGNACIO"
+                    "sede": "SAN IGNACIO",
+                    "role": "user"
             }, 
         {
         "nombrecompleto": "ESTEFANY VASQUEZ",
         "cedula": "1085690799",
         "username": "ESTEFANYVASQUEZ",
                     "password": "E1085690799",
-                    "sede": "TUMACO"
+                    "sede": "TUMACO",
+                    "role": "user"
             }, 
         {
         "nombrecompleto": "YOSTIN JANCARLO JANSSWA CORAL JARAMILLO ",
         "cedula": "1086102251",
         "username": "YOSTINCORAL",
                     "password": "Y1086102251",
-                    "sede": "FATIMA"
+                    "sede": "FATIMA",
+                    "role": "user"
             }, 
         {
         "nombrecompleto": "MERCEDES BEATRIZ CARRERA HURTADO ",
         "cedula": "59688718",
         "username": "MERCEDESCARRERA",
                     "password": "M59688718",
-                    "sede": "TUMACO"
+                    "sede": "TUMACO",
+                    "role": "user"
             }, 
         {
         "nombrecompleto": "KAREN YISETH CIFUENTES ERAZO ",
         "cedula": "1084550382",
         "username": "KARENCIFUENTES",
                     "password": "K1084550382",
-                    "sede": "MARIDIAZ"
+                    "sede": "MARIDIAZ",
+                    "role": "user"
             }, 
         {
         "nombrecompleto": "ANGIE CORREDOR MORA ",
         "cedula": "1085280118",
         "username": "ANGIECORREDOR",
                     "password": "A1085280118",
-                    "sede": "FATIMA"
+                    "sede": "FATIMA",
+                    "role": "admin"
             }, 
         {
                 "nombrecompleto": "ANA ALICIA NOGUERA ALFARO ",
                 "cedula": "1086498135",
                 "username": "ANANOGUERA",
                     "password": "A1086498135",
-                    "sede": "MARIDIAZ"
+                    "sede": "MARIDIAZ",
+                    "role": "user"
+            },
+            {
+                "nombrecompleto": "CAMILO GOMEZ",
+                "cedula": "",
+                "username": "CAMILOGOMEZ",
+                    "password": "Camilo123",
+                    "sede": "MARIDIAZ",
+                    "role": "admin"
+            },
+
+            {
+                "nombrecompleto": "NIVIA STELLA MONTENEGRO JIMENEZ",
+                "cedula": "1085277705",
+                "username": "NIVIAMONTENEGRO",
+                    "password": "N1085277705",
+                    "sede": "SAN IGNACIO",
+                    "role": "admin"
+            },
+            {
+                "nombrecompleto": "JANY JAYLIN CASTRO TENORIO",
+                "cedula": "1087211702",
+                "username": "JANYCASTRO",
+                    "password": "J1087211702",
+                    "sede": "TUMACO",
+                    "role": "user"
+            },
+            {
+                "nombrecompleto": "SANDRA PATRICIA CASTRO ORDOÑEZ",
+                "cedula": "59676065",
+                "username": "SANDRACASTRO",
+                    "password": "S59676065",
+                    "sede": "TUMACO",
+                    "role": "user"
+            },
+            {
+                "nombrecompleto": "MARIA ZULENA ORTIZ SEGURA",
+                "cedula": "1087108588",
+                "username": "MARIAORTIZ",
+                    "password": "M1087108588",
+                    "sede": "TUMACO",
+                    "role": "user"
+            },
+            {
+                "nombrecompleto": "MARIA FERNANDA CAMPAZ TORRES",
+                "cedula": "1193466882",
+                "username": "MARIACAMPAZ",
+                    "password": "M1193466882",
+                    "sede": "TUMACO",
+                    "role": "user"
+            },
+            {
+                "nombrecompleto": "RUTH ESTHER ORTIZ QUIÑONES",
+                "cedula": "1087207336",
+                "username": "RUTHORTIZ",
+                    "password": "R1087207336",
+                    "sede": "TUMACO",
+                    "role": "user"
+            },
+            {
+                "nombrecompleto": "MARCELA DIAZ",
+                "cedula": "1004232983",
+                "username": "MARCELADIAZ",
+                    "password": "M1004232983",
+                    "sede": "MARIDIAZ",
+                    "role": "user"
+            },
+            {
+                "nombrecompleto": "PIEDAD DIAZ",
+                "cedula": "27090136",
+                "username": "PIEDADDIAZ",
+                    "password": "P27090136",
+                    "sede": "MARIDIAZ",
+                    "role": "user"
+            },
+            {
+                "nombrecompleto": "CAMILA JOJOA",
+                "cedula": "1085342971",
+                "username": "CAMILAJOJOA",
+                    "password": "C1085342971",
+                    "sede": "MARIDIAZ",
+                    "role": "user"
+            },
+            {
+                "nombrecompleto": "NIVER ROMAN",
+                "cedula": "1086135930",
+                "username": "NIVERROMAN",
+                    "password": "N1086135930",
+                    "sede": "MARIDIAZ",
+                    "role": "user"
+            },
+            {
+                "nombrecompleto": "MONICA JARAMILLO",
+                "cedula": "36952497",
+                "username": "MONICAJARAMILLO",
+                    "password": "M36952497",
+                    "sede": "MARIDIAZ",
+                    "role": "user"
+            },
+            {
+                "nombrecompleto": "ELIZABETH BASTIDAS RODRIGUEZ",
+                "cedula": "1085254183",
+                "username": "ELIZABETHBASTIDAS",
+                    "password": "E1085254183",
+                    "sede": "PQRS",
+                    "role": "admin"
+            },
+            {
+                "nombrecompleto": "DEISY VANESSA LOPEZ YEPES",
+                "cedula": "1085305515",
+                "username": "DEISYLOPEZ",
+                    "password": "D1085305515",
+                    "sede": "IPS PANDIACO",
+                    "role": "user"
+            },
+            {
+                "nombrecompleto": "LISETH DANIELA CHALAPUD PORTILLA",
+                "cedula": "1004191405",
+                "username": "LISETHCHALAPUD",
+                    "password": "L1004191405",
+                    "sede": "SAN IGNACIO",
+                    "role": "user"
+            },
+            {
+                "nombrecompleto": "INGRID SAMANTA ACOSTA ERIRA",
+                "cedula": "1085337247",
+                "username": "INGRIDACOSTA",
+                    "password": "I1085337247",
+                    "sede": "IPIALES",
+                    "role": "user"
+            },
+            {
+                "nombrecompleto": "ANITA GABRIELA ROSERO VASQUEZ",
+                "cedula": "1004577792",
+                "username": "ANITAROSERO",
+                    "password": "A1004577792",
+                    "sede": "IPIALES",
+                    "role": "user"
+            },
+            {
+                "nombrecompleto": "VALENTINA MOLINA RUIZ",
+                "cedula": "1010086290",
+                "username": "VALENTINAMOLINA",
+                    "password": "V1010086290",
+                    "sede": "VERSALLES",
+                    "role": "user"
+            },
+            {
+                "nombrecompleto": "PHIL ANDERSON CORREA VALENCIA",
+                "cedula": "1130613436",
+                "username": "PHILCORREA",
+                    "password": "P1130613436",
+                    "sede": "VERSALLES",
+                    "role": "user"
+            },
+            {
+                "nombrecompleto": "ENID MILENA OMEN OMEN",
+                "cedula": "106988792",
+                "username": "ENIDOMEN",
+                    "password": "E106988792",
+                    "sede": "MORICHAL",
+                    "role": "user"
+            },
+            {
+                "nombrecompleto": "NURIA DEL ROSARIO VIVEROS",
+                "cedula": "1130613754",
+                "username": "NURIAVIVEROS",
+                    "password": "N1130613754",
+                    "sede": "MORICHAL",
+                    "role": "user"
+            },
+            {
+                "nombrecompleto": "STEPHANY GARCIA GUAZA",
+                "cedula": "1112461744",
+                "username": "STEPHANYGARCIA",
+                    "password": "S1112461744",
+                    "sede": "MORICHAL",
+                    "role": "user"
+            },
+            {
+                "nombrecompleto": "MONICA DEL CARMEN MARTINEZ ARTEAGA",
+                "cedula": "1089481866",
+                "username": "MONICAMARTINEZ",
+                    "password": "M1089481866",
+                    "sede": "TEQUENDAMA",
+                    "role": "admin"
+            },
+            {
+                "nombrecompleto": "JOSE ALEXANDER OROZCO OSPINA",
+                "cedula": "6102267",
+                "username": "JOSEOROZCO",
+                    "password": "J6102267",
+                    "sede": "TEQUENDAMA",
+                    "role": "user"
+            },
+            {
+                "nombrecompleto": "KAROL LISETH CORTES TUBERQUIA",
+                "cedula": "1144187643",
+                "username": "KAROLCORTES",
+                    "password": "K1144187643",
+                    "sede": "TEQUENDAMA",
+                    "role": "user"
+            },
+            {
+                "nombrecompleto": "SULEIMI NARVAEZ COBO",
+                "cedula": "1060801921",
+                "username": "SULEIMINARVAEZ",
+                    "password": "S1060801921",
+                    "sede": "TEQUENDAMA",
+                    "role": "user"
+            },
+            {
+                "nombrecompleto": "DANELLY MANQUILLO TULANDE",
+                "cedula": "1112485595",
+                "username": "DANELLYMANQUILLO",
+                    "password": "D1112485595",
+                    "sede": "TEQUENDAMA",
+                    "role": "user"
+            },
+            {
+                "nombrecompleto": "SANDRA MARCELA GUERRERO",
+                "cedula": "1151943793",
+                "username": "SANDRAGUERRERO",
+                    "password": "S1151943793",
+                    "sede": "PRADO",
+                    "role": "user"
+            },
+            {
+                "nombrecompleto": "IVAN FERNANDO PISTALA CHACUA",
+                "cedula": "1004580554",
+                "username": "IVANPISTALA",
+                    "password": "I1004580554",
+                    "sede": "IPIALES",
+                    "role": "user"
+            },
+            {
+                "nombrecompleto": "LAURA VANESSA LOPEZ SANTACRUZ",
+                "cedula": "1193385431",
+                "username": "LAURALOPEZ",
+                    "password": "L1193385431",
+                    "sede": "COMPRAS",
+                    "role": "admin"
+            },
+            {
+                "nombrecompleto": "PAOLA OMAIRA CARVAJAL DULCE",
+                "cedula": "37084680",
+                "username": "PAOLACARVAJAL",
+                    "password": "P37084680",
+                    "sede": "COMPRAS",
+                    "role": "admin"
+            },
+            {
+                "nombrecompleto": "DAVID SEBASTIAN DOMINGUEZ ANDRADE",
+                "cedula": "1193033678",
+                "username": "DAVIDDOMINGUEZ",
+                    "password": "D1193033678",
+                    "sede": "COMPRAS",
+                    "role": "admin"
+            },
+            {
+                "nombrecompleto": "WILLAN DEIBY DELGADO PANTOJA",
+                "cedula": "98388983",
+                "username": "WILLIANDELGADO",
+                    "password": "W98388983",
+                    "sede": "COMPRAS",
+                    "role": "admin"
+            },
+            {
+                "nombrecompleto": "DIEGO FERNANDO CEBALLOS ERAZO",
+                "cedula": "87575263",
+                "username": "DIEGOCEBALLOS",
+                    "password": "D87575263",
+                    "sede": "COMPRAS",
+                    "role": "admin"
+            },
+            {
+                "nombrecompleto": "PAOLA ANDREA MIDEROS PABON",
+                "cedula": "59311776",
+                "username": "PAOLAMIDEROS",
+                    "password": "P59311776",
+                    "sede": "COMPRAS",
+                    "role": "admin"
+            },
+            {
+                "nombrecompleto": "MARIA CATALINA CORTES DE LA ROSA",
+                "cedula": "36953027",
+                "username": "MARIACORTES",
+                    "password": "M36953027",
+                    "sede": "COMPRAS",
+                    "role": "admin"
+            },
+            {
+                "nombrecompleto": "LEIDY STEFANNY PAZ PABON",
+                "cedula": "1085291722",
+                "username": "LEIDYPAZ",
+                    "password": "A1080059477",
+                    "sede": "PQRS",
+                    "role": "admin"
+            },
+            {
+                "nombrecompleto": "MARIA FERNANDA MONTILLA CABRERA",
+                "cedula": "1233188515",
+                "username": "MARIAMONTILLA",
+                    "password": "M1233188515",
+                    "sede": "SANITAS",
+                    "role": "admin"
+            },
+            {
+                "nombrecompleto": "ESTEFANIA BENAVIDES YAMPUEZAN",
+                "cedula": "1085341528",
+                "username": "ESTEFANIABENAVIDES",
+                    "password": "E1085341528",
+                    "sede": "SANITAS",
+                    "role": "admin"
+            },
+            {
+                "nombrecompleto": "LEIDY JOHANA ALVAREZ",
+                "cedula": "1085342208",
+                "username": "LEIDYALVAREZ",
+                    "password": "L1085342208",
+                    "sede": "SANITAS",
+                    "role": "admin"
+            },
+            {
+                "nombrecompleto": "JACKELINE DEL ROCIO CABRERA PATIÑO",
+                "cedula": "1085302052",
+                "username": "JACKELINECABRERA",
+                    "password": "J1085302052",
+                    "sede": "COMPRAS",
+                    "role": "admin"
+            },
+            {
+                "nombrecompleto": "DIANA MAYREN ERASO MONTILLA",
+                "cedula": "1084226620",
+                "username": "DIANAERASO",
+                    "password": "D1084226620",
+                    "sede": "BUESACO",
+                    "role": "admin"
+            },
+            {
+                "nombrecompleto": "JESSICA ANDREA RIASCOS",
+                "cedula": "1085308275",
+                "username": "JESSICARIASCOS",
+                    "password": "J1085308275",
+                    "sede": "PQRS",
+                    "role": "admin"
+            },
+            {
+                "nombrecompleto": "MARIA CAMILA ZUÑIGA ALVAREZ",
+                "cedula": "1085328293",
+                "username": "MARIAZUÑIGA",
+                    "password": "M1085328293",
+                    "sede": "PQRS",
+                    "role": "admin"
+            },
+            {
+                "nombrecompleto": "MARY NANCY BARCO BARAHONA",
+                "cedula": "59312041",
+                "username": "MARYBARCO",
+                    "password": "M59312041",
+                    "sede": "PQRS",
+                    "role": "admin"
+            },
+            {
+                "nombrecompleto": "JOHANA PATRICIA NARVAEZ MARTINEZ",
+                "cedula": "1085288127",
+                "username": "JOHANANARVAEZ",
+                    "password": "D1085288127",
+                    "sede": "PQRS",
+                    "role": "admin"
+            },
+            {
+                "nombrecompleto": "GERMAN ANDRES CHAMORRO RODRIGUEZ",
+                "cedula": "1124861893",
+                "username": "GERMANCHAMORRO",
+                    "password": "G1124861893",
+                    "sede": "PQRS",
+                    "role": "admin"
+            },
+            {
+                "nombrecompleto": "CARLOS ALEXANDER GOMEZ GORDILLO",
+                "cedula": "1085292041",
+                "username": "CARLOSGOMEZ",
+                    "password": "C1085292041",
+                    "sede": "PQRS",
+                    "role": "admin"
+            },
+            {
+                "nombrecompleto": "LEIDY MARCELA MADROÑERO QUENGUAN",
+                "cedula": "1086223008",
+                "username": "LEIDYMADROÑERO",
+                    "password": "L1086223008",
+                    "sede": "TANGUA", 
+                    "role": "admin"
+            },
+            {
+                "nombrecompleto": "YENNY MARISOL FALCONY TORRES",
+                "cedula": "1088736373",
+                "username": "YENNYFALCONY",
+                    "password": "Y1088736373",
+                    "sede": "PQRS",
+                    "role": "admin"
+            },
+            {
+                "nombrecompleto": "INGREETH NAYIBE CADENA ORTIZ  ",
+                "cedula": "27082057",
+                "username": "INGREETHCADENA",
+                    "password": "I27082057",
+                    "sede": "PQRS",
+                    "role": "admin"
+            },
+            {
+                "nombrecompleto": "MARIO FERNANDO ESPAÑA RODRIGUEZ",
+                "cedula": "1085325778",
+                "username": "MARIOESPAÑA",
+                    "password": "mfespanar95",
+                    "sede": "PQRS",
+                    "role": "admin"
+            },
+            {
+                "nombrecompleto": "CRISTIAN SEBASTIAN CARLOSAMA ESPAÑA",
+                "cedula": "1085343109",
+                "username": "SEBASTIAN",
+                    "password": "SEBAS",
+                    "sede": "SISTEMAS",
+                    "role": "admin"
+            },
+            {
+                "nombrecompleto": "DEIBY ALEJANDRO DELGADO ESTRADA",
+                "cedula": "1193473974",
+                "username": "ALEJANDRO",
+                    "password": "alejo",
+                    "sede": "SISTEMAS",
+                    "role": "admin"
             }
-        
-        
+            
 ]
 

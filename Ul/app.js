@@ -116,7 +116,7 @@ app.get('/buscar', (req, res) => {
         }
 
         // Si se encuentra el paciente, consultar en la tabla pendientes
-        const queryPendientes = 'SELECT idpendientes, numerofactura, fecharegistro, celular, celular2, direccion, medicamento, tipoentrega, sedependiente, cantidadprescrita, cantidadpendiente, cantidadpendientefinal FROM pendientes WHERE identificacion = ?';
+        const queryPendientes = 'SELECT idpendientes, numerofactura, fecharegistro, celular, celular2, direccion, medicamento, tipoentrega, sedependiente, cantidadprescrita, cantidadpendiente, cantidadpendientefinal, fechaformula FROM pendientes WHERE identificacion = ?';
         req.db.query(queryPendientes, [identificacion], (err, pendientesResult) => {
             if (err) {
                 return res.status(500).json({ message: 'Error en la consulta de pendientes' });
